@@ -1,0 +1,8 @@
+body {
+  overflow:auto;
+}
+
+nav.sticky {
+  position: sticky;
+  top: 0;
+}
