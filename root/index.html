@@ -13,64 +13,88 @@
   <!-- Internal -->
   <link href="../css/index.css" rel="stylesheet" type="text/css">
   <!-- External -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">  <!-- Bootstrap css -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">  <!-- Bootstrap css -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  <!-- jQuery Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>  <!-- Popper JS -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>  <!-- Bootstrap js -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  <!-- Bootstrap js -->
   <!-- /Dependancies -->
 </head>
-<style></style>
 <body class="dt-home">
 
 <hr/>
 
-<div class="container-fluid">
+<!-- Top Logo -->
+<div class="container-fluid pb-2 mt-4 mb-2 border-bottom">
   <div class="row">
-    <div class="col-lg-3"><a class="dt-top-home-link" href="#"><strong class="dt-logo-font">unnamed-project</strong></strong></a></div>
-    <div class="col-lg-9" style="text-align:right;"><h1 class="display-4">It's gonna be Diceobu!</h1></div>
+    <div class="col-lg-4 dt-top-logo"><a class="dt-top-home-link" href="#">unnamed-project</a></div>
+    <div class="col-lg-8 d-none d-lg-block dt-top-logo-quote lead">It's gonna be Diceobu!</div>
   </div>
 </div>
 
 <hr/>
 
 <!-- Navigation -->
-<nav class="navbar navbar-inverse dt-sticky">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">unnamed-project</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Page 1-1</a></li>
-            <li><a href="#">Page 1-2</a></li>
-            <li><a href="#">Page 1-3</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <a class="navbar-brand" href="#">unnamed-project</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Go</button>
+    </form>
   </div>
 </nav>
 
 <hr/>
 
+<!-- Main Body -->
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-1" style="background-color:lavender;">Imma be a side menu with lots of options</div>
     <div class="col-lg-10" style="background-color:orange;">Imma be the main context of the page</div>
+  </div>
+</div>
+
+<hr/>
+
+<!--############################################################################### EXPERIMENTATION ZONE ################################################################################-->
+<h1 class="display-1">EXPERIMENTATION ZONE</h1>
+
+<hr/>
+
+<!-- Extra Content -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 col-md-4" style="background-color:blue;"><button class="btn">Click Me!</button><br/>hi</div>
+    <div class="col-xs-6 col-md-4" style="background-color:red;"><button class="btn">Click Me!</button></div>
+    <div class="col-xs-6 col-md-4" style="background-color:blue;"><button class="btn">Click Me!</button></div>
+    <div class="col-xs-6 col-md-4" style="background-color:red;"><button class="btn">Click Me!</button></div>
+    <div class="col-xs-6 col-md-4" style="background-color:blue;"><button class="btn">Click Me!</button></div>
+    <div class="col-xs-6 col-md-4" style="background-color:red;"><button class="btn">Click Me!</button></div>
   </div>
 </div>
 
