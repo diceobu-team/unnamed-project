@@ -34,7 +34,7 @@
   <div class="row">
     <div class="col-lg-4 dt-top-logo"><a class="dt-top-link" href="#">unnamed-project</a></div>
     <div class="col-lg-4 d-none d-lg-block"></div>
-    <div class="col-lg-4 d-none d-lg-block dt-top-logo-quote lead">It's gonna be Diceobu!</div>
+    <div class="col-lg-4 d-none d-lg-block dt-top-logo-quote lead"><p style="display:none;">It's gonna be Diceobu!</p><p>Όλα θα πάνε καλά!</p></div>
   </div>
 </div>
 
@@ -174,15 +174,36 @@
 <script>
   $(document).ready(function() {
   //Preloader
-  $(window).on("load", function() {
-  preloaderFadeOutTime = 1000;
-  function hidePreloader() {
-  var preloader = $('.spinner-wrapper');
-  preloader.fadeOut(preloaderFadeOutTime);
+    $(window).on("load", function() {
+      preloaderFadeOutTime = 1000;
+      function hidePreloader() {
+        var preloader = $('.spinner-wrapper');
+        preloader.fadeOut(preloaderFadeOutTime);
+      }
+      hidePreloader();
+    });
+  });
+
+  function changeLang() {
+    var elemEng = document.getElementsByClassName("langEng");
+    var elemGr = document.getElementsByClassName("langGr");
+    if(elemGr[0].style.display="none") {
+      elemEng.forEach(element => {
+        elemEng[element].style.display="none";
+      });
+      elemGr.forEach(element => {
+        elemGr[element].style.display="initial";
+      });
+    } else if(elemEng[0].style.display="none") {
+      elemGr.forEach(element => {
+        elemGr[element].style.display="none";
+      });
+      elemEng.forEach(element => {
+        elemEng[element].style.display="initial";
+      });
+    }
   }
-  hidePreloader();
-  });
-  });
+
 </script>
 
 </body>
