@@ -168,3 +168,8 @@ a.dt-top-link:hover, a.dt-top-link:active {
 }
 
 /* ################################################################################ EXPERIMENTATION ZONE ################################################################################ */
+
+.dt-fiesta {
+  background-image:url('../img/neon-city-lights.gif');
+  background-size:cover;
+}
