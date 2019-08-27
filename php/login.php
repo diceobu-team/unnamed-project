@@ -29,6 +29,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             header("../root/index.html");// DO SOMETHING (like changing the status to logged in with JS)
           }
         }
+      } else {
+        echo "Wrong username or password. Please try again.";
       }
     } else{
       echo "Oops! Something went wrong. Please try again later.";
