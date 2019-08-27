@@ -4,7 +4,7 @@ function onPageLoad() {
     setTimeout(function() {
       var preloader=$('.sk-folding-cube-wrapper');
       preloader.fadeOut(1000);  // Loader Fadeout Time
-    }, 2000); // Fake Loading Time (Default: 2000, Dev Mode: 0)
+    }, 0); // Fake Loading Time (Default: 2000, Dev Mode: 0)
   });
 }
 
