@@ -31,6 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
       }
     } else{
+      echo "Oops! Something went wrong. Please try again later.";
       // DO SOMETHING (like alerting the user that something went wrong with a pop up)
     }
   }
