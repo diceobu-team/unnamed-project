@@ -23,9 +23,9 @@
 
 <!-- Page Initialization -->
 <script>
-  var elemEng = document.getElementsByClassName("langEng");
-  var elemGr = document.getElementsByClassName("langGr");
-  var lang = "Eng";
+  var elemEng=document.getElementsByClassName("langEng");
+  var elemGr=document.getElementsByClassName("langGr");
+  var lang="Eng";
   $(document).ready(onPageLoad);
 </script>
 <!-- /Page Initialization -->
@@ -84,17 +84,17 @@
     <div class="btn-group" id="dt-login-button">
       <button type="button" class="btn btn-outline-primary my-2 my-sm-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign in</button>
       <div class="dropdown-menu bg-dark text-primary dropdown-menu-right dropdown-menu-left">
-        <form class="px-4 py-3" action="../php/login.php">
+        <form class="px-4 py-3" action="../php/login.php" method="post">
           <div class="form-group dt-signin-dropdown-form-width">
             <label for="Username">Username</label>
-            <input type="Username" class="form-control" placeholder="Username">
+            <input type="text" class="form-control" placeholder="Username" name="username">
           </div>
           <div class="form-group dt-signin-dropdown-form-width">
             <label for="Password">Password</label>
-            <input type="Password" class="form-control" placeholder="Password">
+            <input type="text" class="form-control" placeholder="Password" name="password">
           </div>
           <div class="form-group">
-            <input type="submit" value="Login" class="btn btn-outline-primary">
+            <input type="submit" class="btn btn-outline-primary" value="Login">
           </div>
         </form>
         <div class="dropdown-divider"></div>
@@ -119,14 +119,14 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="../img/night-city-1.jpg" class="d-block w-100" alt="...">
+          <img src="../img/night-city-3.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>First slide label</h5>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="../img/night-city-2.jpg" class="d-block w-100" alt="...">
+          <img src="../img/night-city-3.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>Second slide label</h5>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

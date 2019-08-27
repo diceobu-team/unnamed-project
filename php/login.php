@@ -3,6 +3,13 @@ session_start(); // Initialize session
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) { // Already signed in?
   // DO SOMETHING (like changing the status to logged in with JS)
+  echo "A session has already been started.<br/>";
+  echo "ID: ", $_SESSION["id"], ", Username: ", $_SESSION["username"], ".<br/>";
+  echo "<a href='logout.php'>Logout</a><br/>";
+  echo "or<br/>";
+  echo "<a href='../root/index.html'>Back to Home.</a><br/>";
+
+  // header("Location: ../root/index.html");
   exit;
 }
 
@@ -22,22 +29,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         mysqli_stmt_bind_result($stmt, $id, $username, $stored_password); // Bind Results
         if(mysqli_stmt_fetch($stmt)){ // Fetch stored results to bound variables
           if($password==$stored_password){ // Passwords match?
-            session_start();
+            //session_start();
             $_SESSION["loggedin"] = true;
             $_SESSION["id"] = $id;
             $_SESSION["username"] = $username;
-            header("../root/index.html");// DO SOMETHING (like changing the status to logged in with JS)
+            echo "Session started.<br/>";
+            echo "ID: ", $_SESSION["id"], ", Username: ", $_SESSION["username"], ".<br/>";
+            // DO SOMETHING (like changing the status to logged in with JS)
           }
         }
       } else {
-        echo "Wrong username or password. Please try again.";
+        echo "Wrong username or password. Please try again.<br/>";
       }
     } else{
-      echo "Oops! Something went wrong. Please try again later.";
+      echo "Oops! Something went wrong. Please try again later.<br/>";
       // DO SOMETHING (like alerting the user that something went wrong with a pop up)
     }
+  } else {
+    echo "Link was not created successfully.<br/>";
   }
   mysqli_stmt_close($stmt); // Close statement
   mysqli_close($link); // Close connection
 }
+echo "<a href='../root/index.html'>Back to Home.</a><br/>";
+
+// header("Location: ../root/index.html");
+exit;
 ?>
