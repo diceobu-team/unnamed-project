@@ -7,7 +7,6 @@ $_SESSION = array();
  
 // Destroy the session.
 session_destroy();
-echo "Session has been destroyed.<br/>";
-echo "<a href='../root/index.html'>Back to Home.</a><br/>";
+echo "status code 1";
 exit;
 ?>

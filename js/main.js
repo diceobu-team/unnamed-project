@@ -1,14 +1,14 @@
 // CSS Loader
-function onPageLoad() {
+function stopLoader() {
   $(window).on("load", function() {
     setTimeout(function() {
-      var preloader=$('.sk-folding-cube-wrapper');
-      preloader.fadeOut(1000);  // Loader Fadeout Time
+      var loader=$('.sk-folding-cube-wrapper');
+      loader.fadeOut(1000);  // Loader Fadeout Time
     }, 0); // Fake Loading Time (Default: 2000, Dev Mode: 0)
   });
 }
 
-// Language Selector
+// Language Selection
 function changeLang() {
   console.log("changeLang\tStarted");
   if(lang=="Eng") {
@@ -33,4 +33,28 @@ function changeToNone(element) {
 
 function changeToInitial(element) {
   element.style.display="initial";
+}
+
+// Sign in - Status Button
+function checkStatus(data) {
+  if(data==="") {
+    console.log("No active session");
+  } else if (data==="status code 1") {
+    console.log("Session destroyed.");
+    document.getElementById("dt-display-name-button").style.display="none";
+    document.getElementById("dt-signin-button").style.display="initial";
+  } else if (data==="error code 1") {
+    console.log("Wrong username or password. Please try again.");
+  } else if (data==="error code 2") {
+    console.log("Oops! Something went wrong. Please try again later.");
+  } else if (data==="error code 3") {
+    console.log("Link could not br created.");
+  } else {
+    var dataSplit=data.split(" ");
+    console.log("Session started.");
+    console.log(dataSplit);
+    document.getElementById("dt-signin-button").style.display="none";
+    document.getElementById("dt-display-name-button").style.display="initial";
+    document.getElementById("dt-display-name-actual-button").innerHTML=dataSplit[2];
+  }
 }

@@ -11,24 +11,24 @@
 <!-- /Information -->
 
 <!-- Dependancies -->
-<!-- Custom -->
-<link href="../css/main.css" rel="stylesheet" type="text/css">
-<script src="../js/main.js"></script>
 <!-- Other -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">  <!-- Bootstrap css -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  <!-- jQuery Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>  <!-- Popper JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  <!-- Bootstrap js -->
+<!-- Custom -->
+<link href="../css/main.css" rel="stylesheet" type="text/css">
+<script src="../js/main.js"></script>
+<script src="../js/jquery.js"></script>
 <!-- /Dependancies -->
 
-<!-- Page Initialization -->
+<!-- Global Variable Initialization -->
 <script>
   var elemEng=document.getElementsByClassName("langEng");
   var elemGr=document.getElementsByClassName("langGr");
   var lang="Eng";
-  $(document).ready(onPageLoad);
 </script>
-<!-- /Page Initialization -->
+<!-- /Global Variable Initialization -->
 
 </head>
 <body class="dt-home">
@@ -36,7 +36,7 @@
 <!-------------------- Common Section -------------------->
 
 <!--CSS Loader-->
-<div class="sk-folding-cube-wrapper">
+<div class="sk-folding-cube-wrapper" id="dt-loader">
     <div class="sk-folding-cube">
       <div class="sk-cube1 sk-cube"></div>
       <div class="sk-cube2 sk-cube"></div>
@@ -81,24 +81,39 @@
     </ul>
 
     <button class="btn btn-outline-primary my-2 my-sm-0" id="dt-change-lang-button" onclick="changeLang()">Eng</button>
-    <div class="btn-group" id="dt-login-button">
+
+    <div class="btn-group" id="dt-signin-button">
       <button type="button" class="btn btn-outline-primary my-2 my-sm-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign in</button>
-      <div class="dropdown-menu bg-dark text-primary dropdown-menu-right dropdown-menu-left">
-        <form class="px-4 py-3" action="../php/login.php" method="post">
+      
+      <div class="dropdown-menu bg-dark text-primary dropdown-menu-right">
+        <form class="px-4 py-3">
+
           <div class="form-group dt-signin-dropdown-form-width">
             <label for="Username">Username</label>
-            <input type="text" class="form-control" placeholder="Username" name="username">
+            <input type="text" class="form-control" id="dt-form-username-input" placeholder="Username" name="username">
           </div>
+
           <div class="form-group dt-signin-dropdown-form-width">
             <label for="Password">Password</label>
-            <input type="text" class="form-control" placeholder="Password" name="password">
+            <input type="text" class="form-control" id="dt-form-password-input" placeholder="Password" name="password">
           </div>
+
           <div class="form-group">
-            <input type="submit" class="btn btn-outline-primary" value="Login">
+            <button type="button" class="btn btn-outline-primary" id="dt-login-button">Login</button>
           </div>
         </form>
+
         <div class="dropdown-divider"></div>
+
         <p class="dt-signin-dropdown-info">Only system administrators can sign in.<br/><a class="text-primary" href="#">Learn more</a></p>
+      </div>
+    </div>
+
+    <div class="btn-group" id="dt-display-name-button">
+      <button type="button" class="btn btn-outline-primary my-2 my-sm-0" id="dt-display-name-actual-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Guest</button>
+      <div class="dropdown-menu bg-dark text-primary dropdown-menu-right">
+        some text here<br/>
+        <button type="button" class="btn btn-outline-primary" id="dt-logout-button">Logout</button>
       </div>
     </div>
 
@@ -106,7 +121,6 @@
 </nav>
 
 <!-------------------- /Common Section -------------------->
-
 <div class="dt-fiesta">
 
   <!-- Main Content -->
@@ -120,21 +134,21 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="../img/night-city-3.jpg" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
+          <div class="carousel-caption d-none d-lg-block">
             <h5>First slide label</h5>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </div>
         </div>
         <div class="carousel-item">
           <img src="../img/night-city-3.jpg" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
+          <div class="carousel-caption d-none d-lg-block">
             <h5>Second slide label</h5>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </div>
         </div>
         <div class="carousel-item">
           <img src="../img/night-city-3.jpg" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
+          <div class="carousel-caption d-none d-lg-block">
             <h5>Third slide label</h5>
             <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
           </div>
