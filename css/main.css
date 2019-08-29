@@ -150,7 +150,7 @@ a.dt-top-link:hover, a.dt-top-link:active {
 }
 
 /* Navbar Buttons */
-#dt-change-lang-button, #dt-signin-button, #dt-display-name-button{
+.dt-navbar-buttons {
   margin-right:0.5em;
   margin-left:0.5em;
 }
@@ -165,7 +165,7 @@ a.dt-top-link:hover, a.dt-top-link:active {
 
 /* Navbar Form */
 .dt-navbar-dropdown-form-width {
-  width:10em;
+  width:15em;
 }
 
 .dt-signin-dropdown-info {

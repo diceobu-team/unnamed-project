@@ -1,11 +1,26 @@
+// On page load (get session data from server)
 $(document).ready(function() {
-  // On page load (get session data from server)
-  $.post("../php/login.php", function(data, status) {
-    console.log("Data: "+data+"\nStatus: "+status);
-    checkStatus(data);
+  // STARTUP
+  $.post("/unnamed-project/php/startup.php", function(data, status) {
+    console.log("startup.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
   });
 
-  // Loader (stop after 2 seconds or cancel completely on small devices)
+  // Login data
+  $.post("/unnamed-project/php/login.php", function(data, status) {
+    console.log("login.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
+    checkStatus(data);
+  });
+ 
+  // Other status data
+  var sessionVar="language";
+  var sessionVarValue=language;
+  $.post("/unnamed-project/php/session.php", {sessionVar, sessionVarValue}, function(data, status) {
+    console.log("session.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
+  });
+});
+
+// Loader (stop after 2 seconds or cancel completely on small devices)
+$(document).ready(function() {
   var screenWidth=$(window).width()
   console.log(screenWidth);
   if(screenWidth>=992) {
@@ -13,20 +28,29 @@ $(document).ready(function() {
   } else {
     document.getElementById("dt-loader").style.display="none";
   }
+});
 
-  // Login Form
+// Event Handlers
+$(document).ready(function() {
+  // Language Selection
+  $("#dt-change-lang-button").click(function() {
+    changeLang();
+  });
+
+  // Login
   $("#dt-login-button").click(function() {
     var username=$("#dt-form-username-input").val();
     var password=$("#dt-form-password-input").val();
-    $.post("../php/login.php", {username, password}, function(data, status) {
-      console.log("Server replied: "+data+"\nStatus: "+status);
+    $.post("/unnamed-project/php/login.php", {username, password}, function(data, status) {
+      console.log("login.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
       checkStatus(data);
     });
   });
 
+  // Logout
   $("#dt-logout-button").click(function() {
-    $.post("../php/logout.php", function(data, status) {
-      console.log("Server replied: "+data+"\nStatus: "+status);
+    $.post("/unnamed-project/php/logout.php", function(data, status) {
+      console.log("logout.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
       checkStatus(data);
     });
   });
