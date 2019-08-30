@@ -1,28 +1,24 @@
-// On page load (get session data from server)
-$(document).ready(function() {
-  // STARTUP
-  $.post("/unnamed-project/php/startup.php", function(data, status) {
-    console.log("startup.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
-  });
+// Global Variables
+var language="Eng";
+var elemEng=document.getElementsByClassName("langEng");
+var elemGr=document.getElementsByClassName("langGr");
+var sessionActive;
+var sessionId;
 
+// On page load
+$(document).ready(function() {
   // Login data
   $.post("/unnamed-project/php/login.php", function(data, status) {
     console.log("login.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
-    checkStatus(data);
-  });
- 
-  // Other status data
-  var sessionVar="language";
-  var sessionVarValue=language;
-  $.post("/unnamed-project/php/session.php", {sessionVar, sessionVarValue}, function(data, status) {
-    console.log("session.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
+    sessionActive=checkStatus(data); // true if a session is active, false otherwise
+    console.log("Session active:\t\t"+sessionActive);
+    fetchClientData(data); // Depending on session status, fetches data from server database or client cookies
   });
 });
 
 // Loader (stop after 2 seconds or cancel completely on small devices)
 $(document).ready(function() {
   var screenWidth=$(window).width()
-  console.log(screenWidth);
   if(screenWidth>=992) {
     stopLoader();
   } else {
@@ -35,6 +31,8 @@ $(document).ready(function() {
   // Language Selection
   $("#dt-change-lang-button").click(function() {
     changeLang();
+    console.log("Session active:\t\t"+sessionActive);
+    // storeClientLang(data); // Depending on session status, stores language data to the server database or the client cookies
   });
 
   // Login
@@ -43,7 +41,9 @@ $(document).ready(function() {
     var password=$("#dt-form-password-input").val();
     $.post("/unnamed-project/php/login.php", {username, password}, function(data, status) {
       console.log("login.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
-      checkStatus(data);
+      sessionActive=checkStatus(data); // true if a session is active, false otherwise
+      console.log("Session active:\t\t"+sessionActive);
+      fetchClientData(data); // Depending on session status, fetches data from server database or client cookies
     });
   });
 
@@ -51,7 +51,9 @@ $(document).ready(function() {
   $("#dt-logout-button").click(function() {
     $.post("/unnamed-project/php/logout.php", function(data, status) {
       console.log("logout.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
-      checkStatus(data);
+      sessionActive=checkStatus(data); // true if a session is active, false otherwise
+      console.log("Session active:\t\t"+sessionActive);
+      fetchClientData(data); // Depending on session status, fetches data from server database or client cookies
     });
   });
 });

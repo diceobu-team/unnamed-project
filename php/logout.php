@@ -9,9 +9,5 @@ $_SESSION = array();
 session_destroy();
 echo "status code 1";
 
-// Destroy perma-session too
-session_name("perma-session");
-session_start();
-session_destroy();
 exit;
 ?>
