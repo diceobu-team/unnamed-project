@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(!isset($_SESSION[$_POST["sessionVar"]]) && isset($_POST["sessionId"])) { // Load from server (into session)
       $id=$_POST["sessionId"];
       $sessionVar=$_POST["sessionVar"];
-      $sql = "SELECT $sessionVar FROM accounts WHERE id = ?"; // Prepare select statement
+      $sql="SELECT $sessionVar FROM accounts WHERE id = ?"; // Prepare select statement
       if($stmt = mysqli_prepare($link, $sql)) { // Statement prepared properly?
         mysqli_stmt_bind_param($stmt, "s", $id); // Bind id to prepared statement
         if(mysqli_stmt_execute($stmt)) { // Statement executed properly?
@@ -29,14 +29,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       }
       mysqli_stmt_close($stmt); // Close statement
       mysqli_close($link); // Close connection
-    }
-    if(isset($_POST["sessionVarValue"]) && isset($_POST["sessionVar"])) { // Change value in session (and server if sessionId specified)
-      $_SESSION[$_POST["sessionVar"]]=$_POST["sessionVarValue"];          // Normally session variables and server variables must be synced
+    } else if(isset($_POST["sessionVarValue"]) && isset($_POST["sessionVar"])) { // Change value in session (and server if sessionId specified)
+      $sessionVar=$_POST["sessionVar"];                                          // Normally session variables and server variables must be synced
+      $sessionVarValue=$_POST["sessionVarValue"];
+      $_SESSION[$sessionVar]=$sessionVarValue;
       if(isset($_POST["sessionId"])) {
         // change data in database too...
+        $id=$_POST["sessionId"];
+        $sql="UPDATE accounts SET $sessionVar = '$sessionVarValue' WHERE id = ?"; // Prepare update statement
+
+        if($stmt = mysqli_prepare($link, $sql)) { // Statement prepared properly?
+          mysqli_stmt_bind_param($stmt, "s", $id); // Bind id to prepared statement
+          if(mysqli_stmt_execute($stmt)) { // Statement executed properly?
+            echo "status code 3"; // Data stored successfully
+          } else{
+            echo "error code 2"; // Oops! Something went wrong. Please try again later.
+          }
+        } else {
+          echo "error code 3"; // Statement could not be prepared.
+        }
+        mysqli_stmt_close($stmt); // Close statement
+        mysqli_close($link); // Close connection
+
       }
-    }
-    if(isset($_SESSION[$_POST["sessionVar"]])) { // Return session data
+    } else if(isset($_SESSION[$_POST["sessionVar"]])) { // Return session data
       echo $_SESSION[$_POST["sessionVar"]];
     }
   }

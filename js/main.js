@@ -8,23 +8,19 @@ function stopLoader() {
   });
 }
 
-// Language Selection (toggle)
+// Language selection (toggle)
 function changeLang() {
-  console.log("\tStatus:\t\t\tchangeLang\tStarted");
   if(language=="Eng") {
-    console.log("\tStatus:\t\t\tchangeLang\telemGr");
     Array.prototype.forEach.call(elemEng, changeToNone);
     Array.prototype.forEach.call(elemGr, changeToInitial);
     document.getElementById("dt-change-lang-button").innerHTML="Gr";
     language="Gr";
   } else if(language=="Gr") {
-    console.log("\tStatus:\t\t\tchangeLang\telemEng");
     Array.prototype.forEach.call(elemGr, changeToNone);
     Array.prototype.forEach.call(elemEng, changeToInitial);
     document.getElementById("dt-change-lang-button").innerHTML="Eng";
     language="Eng";
   }
-  console.log("\tStatus:\t\t\tchangeLang\tDone");
 }
 
 function changeToNone(element) {
@@ -35,26 +31,40 @@ function changeToInitial(element) {
   element.style.display="initial";
 }
 
-// Client Status
+// Debug console on/off (toggle)
+function changeDebugLogs() {
+  if(debugLogs) {
+    debugLogs=false;
+  } else {
+    debugLogs=true;
+  }
+  if(debugLogs) {
+    console.log("Logs activated.");
+  } else {
+    console.log("Logs deactivated.");
+  }
+}
+
+// User Status
 function checkStatus(data) {
   if(data==="status code 2") {
-    console.log("\tStatus:\t\t\tGuest Session");
+    if(debugLogs)console.log("\tStatus:\t\t\tGuest Session");
     return false;
   } else if (data==="status code 1") {
-    console.log("\tStatus:\t\t\tSession destroyed.");
+    if(debugLogs)console.log("\tStatus:\t\t\tSession destroyed.");
     resetUI();
     return false;
   } else if (data==="error code 1") {
-    console.log("\tStatus Error:\tWrong username or password. Please try again.");
+    if(debugLogs)console.log("\tStatus Error:\tWrong username or password. Please try again.");
     return false;
   } else if (data==="error code 2") {
-    console.log("\tStatus Error:\tOops! Something went wrong. Please try again later.");
+    if(debugLogs)console.log("\tStatus Error:\tOops! Something went wrong. Please try again later.");
     return false;
   } else if (data==="error code 3") {
-    console.log("\tStatus Error:\tStatement could not be prepared.");
+    if(debugLogs)console.log("\tStatus Error:\tStatement could not be prepared.");
     return false;
   } else {
-    console.log("\tStatus:\t\t\tSession started.");
+    if(debugLogs)console.log("\tStatus:\t\t\tSession started.");
     setUI(data);
     return true;
   }
@@ -65,58 +75,87 @@ function setUI(data) {
   document.getElementById("dt-signin-button").style.display="none";
   document.getElementById("dt-display-name-button").style.display="initial";
   document.getElementById("dt-display-name-actual-button").innerHTML=dataSplit[3];
-  if(dataSplit[2]==0) {
+  if(dataSplit[2]==0) { // User has status Member
+    // Sign in button & status block
     document.getElementById("dt-status-block").style.display="initial";
     document.getElementById("dt-status").innerHTML="Member";
-  } else if(dataSplit[2]==1) {
+  } else if(dataSplit[2]==1) { // User has status Admin
+    // Sign in button & status block
     document.getElementById("dt-status-block").style.display="initial";
     document.getElementById("dt-status").innerHTML="Admin";
+    // Debug console toggler
+    document.getElementById("dt-debug-console-toggler").style.display="initial";
   }
 }
 
 function resetUI() {
+  // Sign in button & status block
   document.getElementById("dt-display-name-button").style.display="none";
   document.getElementById("dt-signin-button").style.display="initial";
+  // Debug console toggler
+  document.getElementById("dt-debug-console-toggler").style.display="none";
 }
 
-// Additional session data
-function fetchClientData(data) {
+// Additional session data :: DIF between fetchClientData and storeClientData: fetch recalls everything at once
+function fetchClientData(data) { // while, store, stores everything on demand (one by one when called)
   if(sessionActive===true) { // if a session is active, request more data
     var dataSplit=data.split(" ");
     sessionId=dataSplit[0];
     // Language Data
     $.post("/unnamed-project/php/session.php", {sessionVar: "language", sessionId}, function(data, status) {
-      console.log("session.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
+      if(debugLogs)console.log("session.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
       if(checkSession(data)) { // Data fetch successful?
         if(data==language) {
-          console.log("\tStatus:\t\t\tLanguage already synced.");
+          if(debugLogs)console.log("\tStatus:\t\t\tLanguage already synced.");
         } else {
           changeLang();
-          console.log("\tStatus:\t\t\tLanguage changed successfully.");
+          if(debugLogs)console.log("\tStatus:\t\t\tLanguage changed successfully.");
         }
       } else {
-        console.log("Critical Error:\t\tLanguage could not be set.");
+        if(debugLogs)console.log("Critical Error:\t\tLanguage could not be set.");
       }
     });
   } else {
     // Load cookies
-    console.log("Cookies:\t\t\tfetched");
+    if(debugLogs)console.log("Cookies:\t\t\tfetched");
     // checkCookie();
+  }
+}
+
+function storeClientData(sessionVar, sessionVarValue) { // Update session variables (and database) or client cookies, depending on session status
+  if(sessionActive===true) { // Session active?
+    if(debugLogs)console.log("\tStore:\t\t\tStoring data to database.");
+    $.post("/unnamed-project/php/session.php", {sessionVar, sessionVarValue, sessionId}, function(data, status) {
+      if(debugLogs)console.log("session.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
+      if(checkSession(data)) { // Data stored successfully?
+        if(debugLogs)console.log("\tStatus:\t\t\tData stored successfully.");
+      } else {
+        if(debugLogs)console.log("Critical Error:\t\tData could not be stored.");
+      }
+    });
+  } else {
+    if(debugLogs)console.log("\tStore:\t\t\tStoring data to cookies.");
+    if(debugLogs)console.log(sessionVar);
+    if(debugLogs)console.log(sessionVarValue);
+    if(debugLogs)console.log(sessionId);
   }
 }
 
 function checkSession(data) {
   if(data==="error code 4") {
-    console.log("\tSession Error:\tId doesn't exist.");
+    if(debugLogs)console.log("\tSession Error:\tId doesn't exist.");
     return false;
   } else if (data==="error code 2") {
-    console.log("\tSession Error:\tOops! Something went wrong. Please try again later.");
+    if(debugLogs)console.log("\tSession Error:\tOops! Something went wrong. Please try again later.");
     return false;
   } else if (data==="error code 3") {
-    console.log("\tSession Error:\tStatement could not be prepared.");
+    if(debugLogs)console.log("\tSession Error:\tStatement could not be prepared.");
     return false;
+  } else if (data==="status code 3") {
+    if(debugLogs)console.log("\tSession Status:\tData stored successfully.");
+    return true;
   } else {
-    console.log("\tSession:\t\tRecovered data can be used safely.");
+    if(debugLogs)console.log("\tSession Status:\tRecovered data can be used safely.");
     return true;
   }
 }

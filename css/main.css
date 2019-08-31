@@ -172,6 +172,10 @@ a.dt-top-link:hover, a.dt-top-link:active {
   margin:1.5em;
 }
 
+#dt-debug-console-toggler {
+  display:none;
+}
+
 /* ################################################################################ EXPERIMENTATION ZONE ################################################################################ */
 
 .dt-fiesta {
