@@ -34,7 +34,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       $sessionVarValue=$_POST["sessionVarValue"];
       $_SESSION[$sessionVar]=$sessionVarValue;
       if(isset($_POST["sessionId"])) {
-        // change data in database too...
         $id=$_POST["sessionId"];
         $sql="UPDATE accounts SET $sessionVar = '$sessionVarValue' WHERE id = ?"; // Prepare update statement
 
@@ -52,7 +51,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_close($link); // Close connection
 
       }
-    } else if(isset($_SESSION[$_POST["sessionVar"]])) { // Return session data
+    }
+    if(isset($_SESSION[$_POST["sessionVar"]])) { // Return session data
       echo $_SESSION[$_POST["sessionVar"]];
     }
   }

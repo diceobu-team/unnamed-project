@@ -13,12 +13,16 @@ function changeLang() {
   if(language=="Eng") {
     Array.prototype.forEach.call(elemEng, changeToNone);
     Array.prototype.forEach.call(elemGr, changeToInitial);
-    document.getElementById("dt-change-lang-button").innerHTML="Gr";
+    document.getElementById("dt-change-lang-button").innerHTML="Ελ";
+    document.getElementById("dt-form-username-input").placeholder="Όνομα Χρήστη";
+    document.getElementById("dt-form-password-input").placeholder="Κωδικός Πρόσβασης";
     language="Gr";
   } else if(language=="Gr") {
     Array.prototype.forEach.call(elemGr, changeToNone);
     Array.prototype.forEach.call(elemEng, changeToInitial);
     document.getElementById("dt-change-lang-button").innerHTML="Eng";
+    document.getElementById("dt-form-username-input").placeholder="Username";
+    document.getElementById("dt-form-password-input").placeholder="Password";
     language="Eng";
   }
 }
@@ -118,7 +122,7 @@ function fetchClientData(data) { // while, store, stores everything on demand (o
   } else {
     // Load cookies
     if(debugLogs)console.log("Cookies:\t\t\tfetched");
-    // checkCookie();
+    checkCookies();
   }
 }
 
@@ -135,9 +139,8 @@ function storeClientData(sessionVar, sessionVarValue) { // Update session variab
     });
   } else {
     if(debugLogs)console.log("\tStore:\t\t\tStoring data to cookies.");
-    if(debugLogs)console.log(sessionVar);
-    if(debugLogs)console.log(sessionVarValue);
-    if(debugLogs)console.log(sessionId);
+    setCookie("language", language, 1);
+    if(debugLogs)console.log("\tCookie status:\tlanguage cookie set to "+language);
   }
 }
 
@@ -184,14 +187,19 @@ function getCookie(cname) {
   return "";
 }
 
-function checkCookie() {
-  var language=getCookie("language");
-  if (language!="") {
-    alert("Welcome again! Your language is "+language+".");
+function checkCookies() {
+  // Language cookie
+  var clanguage=getCookie("language");
+  if (clanguage!="") {
+    if(clanguage!=language) {
+      changeLang();
+      language=clanguage;
+      if(debugLogs)console.log("\tCookie status:\tlanguage changed to "+clanguage);
+    } else {
+      if(debugLogs)console.log("\tCookie status:\tlanguage cookie is already synced");
+    }
   } else {
-     language = prompt("Please enter your language:","");
-     if (language != "" && language != null) {
-       setCookie("language", language, 30);
-     }
+    setCookie("language", language, 1);
+    if(debugLogs)console.log("\tCookie status:\tlanguage cookie set to "+language);
   }
 }

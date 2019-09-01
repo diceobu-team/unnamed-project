@@ -62,7 +62,10 @@ $(document).ready(function() {
       if(!sessionActive)sessionId=undefined;
       if(debugLogs)console.log("Session active:\t\t"+sessionActive);
       fetchClientData(data); // Depending on session status, fetches data from server database or client cookies
-      if(debugLogs)changeDebugLogs();
+      if(debugLogs) {
+        changeDebugLogs();
+        $("#dt-custom-switch").prop("checked", false);
+      }
     });
   });
 });

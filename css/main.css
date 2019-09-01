@@ -159,9 +159,13 @@ a.dt-top-link:hover, a.dt-top-link:active {
   display:none;
 }
 
-#dt-change-lang-button {
+/* #dt-change-lang-button {
   width: 54px;
 }
+
+#dt-signin-button, #dt-display-name-actual-button {
+  width: 90px;
+} */
 
 /* Navbar Form */
 .dt-navbar-dropdown-form-width {
