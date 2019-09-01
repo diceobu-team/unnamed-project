@@ -8,5 +8,6 @@ $_SESSION = array();
 // Destroy the session.
 session_destroy();
 echo "status code 1";
+
 exit;
 ?>

@@ -150,7 +150,7 @@ a.dt-top-link:hover, a.dt-top-link:active {
 }
 
 /* Navbar Buttons */
-#dt-change-lang-button, #dt-signin-button, #dt-display-name-button{
+.dt-navbar-buttons {
   margin-right:0.5em;
   margin-left:0.5em;
 }
@@ -159,17 +159,25 @@ a.dt-top-link:hover, a.dt-top-link:active {
   display:none;
 }
 
-#dt-change-lang-button {
+/* #dt-change-lang-button {
   width: 54px;
 }
 
+#dt-signin-button, #dt-display-name-actual-button {
+  width: 90px;
+} */
+
 /* Navbar Form */
-.dt-signin-dropdown-form-width {
-  width:10em;
+.dt-navbar-dropdown-form-width {
+  width:15em;
 }
 
 .dt-signin-dropdown-info {
   margin:1.5em;
+}
+
+#dt-debug-console-toggler {
+  display:none;
 }
 
 /* ################################################################################ EXPERIMENTATION ZONE ################################################################################ */

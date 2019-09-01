@@ -22,14 +22,6 @@
 <script src="../js/jquery.js"></script>
 <!-- /Dependancies -->
 
-<!-- Global Variable Initialization -->
-<script>
-  var elemEng=document.getElementsByClassName("langEng");
-  var elemGr=document.getElementsByClassName("langGr");
-  var lang="Eng";
-</script>
-<!-- /Global Variable Initialization -->
-
 </head>
 <body class="dt-home">
 
@@ -64,66 +56,87 @@
   <div class="collapse navbar-collapse" id="navbar-content">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="#"><p class="langEng">Home</p><p class="langGr">Αρχική</p></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="tool/tool.html">Tool</a>
+        <a class="nav-link" href="tool/tool.html"><p class="langEng">Tool</p><p class="langGr">Εργαλείο</p></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="documentation/documentation.html"><p class="langEng">Documentation</p><p class="langGr">Έγγραφα</p></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Documentation</a>
+        <a class="nav-link" href="about/about.html"><p class="langEng">About</p><p class="langGr">Σχετικά</p></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Help</a>
+        <a class="nav-link" href="help/help.html"><p class="langEng">Help</p><p class="langGr">Βοήθεια</p></a>
       </li>
     </ul>
 
-    <button class="btn btn-outline-primary my-2 my-sm-0" id="dt-change-lang-button" onclick="changeLang()">Eng</button>
+    <button class="btn btn-outline-primary my-2 my-sm-0 dt-navbar-buttons" id="dt-change-lang-button">Eng</button>
 
-    <div class="btn-group" id="dt-signin-button">
-      <button type="button" class="btn btn-outline-primary my-2 my-sm-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign in</button>
-      
-      <div class="dropdown-menu bg-dark text-primary dropdown-menu-right">
-        <form class="px-4 py-3">
+    <div class="btn-group dt-navbar-buttons" id="dt-signin-button">
+      <button type="button" class="btn btn-outline-primary my-2 my-sm-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><p class="langEng">Sign in</p><p class="langGr">Είσοδος</p></button>
 
-          <div class="form-group dt-signin-dropdown-form-width">
-            <label for="Username">Username</label>
-            <input type="text" class="form-control" id="dt-form-username-input" placeholder="Username" name="username">
-          </div>
+      <div class="dropdown">
+        <div class="dropdown-menu bg-dark text-primary dropdown-menu-right dt-navbar-dropdown-form-width">
+          <form class="px-4 py-3">
 
-          <div class="form-group dt-signin-dropdown-form-width">
-            <label for="Password">Password</label>
-            <input type="text" class="form-control" id="dt-form-password-input" placeholder="Password" name="password">
-          </div>
+            <div class="form-group">
+              <label for="Username"><p class="langEng">Username</p><p class="langGr">Όνομα Χρήστη</p></label>
+              <input type="text" class="form-control" id="dt-form-username-input" placeholder="Username" name="username">
+            </div>
 
-          <div class="form-group">
-            <button type="button" class="btn btn-outline-primary" id="dt-login-button">Login</button>
-          </div>
-        </form>
+            <div class="form-group">
+              <label for="Password"><p class="langEng">Password</p><p class="langGr">Κωδικός Πρόσβασης</p></label>
+              <input type="text" class="form-control" id="dt-form-password-input" placeholder="Password" name="password">
+            </div>
 
-        <div class="dropdown-divider"></div>
+            <div class="form-group">
+              <button type="button" class="btn btn-outline-primary" id="dt-login-button"><p class="langEng">Login</p><p class="langGr">Σύνδεση</p></button>
+            </div>
 
-        <p class="dt-signin-dropdown-info">Only system administrators can sign in.<br/><a class="text-primary" href="#">Learn more</a></p>
+            <div class="dropdown-divider"></div>
+
+            <p class="langEng">Don't have an account?<br/><a class="text-primary langEng" href="#">Register!</a></p>
+            <p class="langGr">Δεν έχετε λογαριασμό;<br/><a class="text-primary langGr" href="#">Κάντε Εγγραφή!</a></p>
+          </form>
+        </div>
       </div>
     </div>
 
-    <div class="btn-group" id="dt-display-name-button">
+    <div class="btn-group dt-navbar-buttons" id="dt-display-name-button">
       <button type="button" class="btn btn-outline-primary my-2 my-sm-0" id="dt-display-name-actual-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Guest</button>
-      <div class="dropdown-menu bg-dark text-primary dropdown-menu-right">
-        some text here<br/>
-        <button type="button" class="btn btn-outline-primary" id="dt-logout-button">Logout</button>
+      <div class="dropdown">
+        <div class="dropdown-menu bg-dark text-primary dropdown-menu-right dt-navbar-dropdown-form-width">
+          <form class="px-4 py-3">
+
+            <div id="dt-status-block">
+              <strong>Status:</strong><p id="dt-status">guest</p>
+            </div>
+
+            <div class="custom-control custom-switch" id="dt-debug-console-toggler">
+              <input type="checkbox" class="custom-control-input" id="dt-custom-switch">
+              <label class="custom-control-label" for="dt-custom-switch"><p class="langEng">Debug Logs</p><p class="langGr">Aποσφαλμάτωση</p></label>
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <div class="form-group">
+              <button type="button" class="btn btn-outline-primary" id="dt-logout-button"><p class="langEng">Logout</p><p class="langGr">Αποσύνδεση</p></button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
 
   </div>
 </nav>
-
 <!-------------------- /Common Section -------------------->
-<div class="dt-fiesta">
 
-  <!-- Main Content -->
+<!-- Main Content -->
+<div>
+  <br/>
+
   <div class="container">
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
