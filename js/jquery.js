@@ -10,10 +10,14 @@ var debugLogs=false;
 $(document).ready(function() {
   // Fetch user data
   $.post("/unnamed-project/php/login.php", function(data, status) {
-    if(debugLogs)console.log("login.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
+    displayConLog("login.php", "\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
     sessionActive=checkStatus(data); // true if a session is active, false otherwise
-    if(!sessionActive)sessionId=undefined;
-    if(debugLogs)console.log("Session active:\t\t"+sessionActive);
+    if(sessionActive) {
+      displayConLog("session", "active");
+    } else {
+      sessionId=undefined;
+      displayConLog("session", "inactive");
+    }
     fetchClientData(data); // Depending on session status, fetches data from server database or client cookies
   });
 });
@@ -46,25 +50,33 @@ $(document).ready(function() {
     var username=$("#dt-form-username-input").val();
     var password=$("#dt-form-password-input").val();
     $.post("/unnamed-project/php/login.php", {username, password}, function(data, status) {
-      if(debugLogs)console.log("login.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
+      displayConLog("login.php", "Server replied: "+data+"\tStatus: "+status);
       sessionActive=checkStatus(data); // true if a session is active, false otherwise
-      if(!sessionActive)sessionId=undefined;
-      if(debugLogs)console.log("Session active:\t\t"+sessionActive);
-      fetchClientData(data); // Depending on session status, fetches data from server database or client cookies
+      if(sessionActive) {
+        displayConLog("session", "active");
+      } else {
+        sessionId=undefined;
+        displayConLog("session", "inactive");
+      }
+       fetchClientData(data); // Depending on session status, fetches data from server database or client cookies
     });
   });
 
   // Logout
   $("#dt-logout-button").click(function() {
     $.post("/unnamed-project/php/logout.php", function(data, status) {
-      if(debugLogs)console.log("logout.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
+      displayConLog("logout.php", "Server replied: "+data+"\tStatus: "+status);
       sessionActive=checkStatus(data); // true if a session is active, false otherwise
-      if(!sessionActive)sessionId=undefined;
-      if(debugLogs)console.log("Session active:\t\t"+sessionActive);
+      if(sessionActive) {
+        displayConLog("session", "active");
+      } else {
+        sessionId=undefined;
+        displayConLog("session", "inactive");
+      }
       fetchClientData(data); // Depending on session status, fetches data from server database or client cookies
       if(debugLogs) {
         changeDebugLogs();
-        $("#dt-custom-switch").prop("checked", false);
+        $("#dt-custom-switch").prop("checked");
       }
     });
   });

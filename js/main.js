@@ -52,23 +52,23 @@ function changeDebugLogs() {
 // User Status
 function checkStatus(data) {
   if(data==="status code 2") {
-    if(debugLogs)console.log("\tStatus:\t\t\tGuest Session");
+    displayConLog("server", "Guest Session");
     return false;
   } else if (data==="status code 1") {
-    if(debugLogs)console.log("\tStatus:\t\t\tSession destroyed.");
+    displayConLog("server", "Session destroyed");
     resetUI();
     return false;
   } else if (data==="error code 1") {
-    if(debugLogs)console.log("\tStatus Error:\tWrong username or password. Please try again.");
+    displayConLog("server", "Wrong username or password. Please try again.", true)
     return false;
   } else if (data==="error code 2") {
-    if(debugLogs)console.log("\tStatus Error:\tOops! Something went wrong. Please try again later.");
+    displayConLog("server", "Oops! Something went wrong. Please try again later.", true);
     return false;
   } else if (data==="error code 3") {
-    if(debugLogs)console.log("\tStatus Error:\tStatement could not be prepared.");
+    displayConLog("server", "Statement could not be prepared.", true);
     return false;
   } else {
-    if(debugLogs)console.log("\tStatus:\t\t\tSession started.");
+    displayConLog("server", "Session started.");
     setUI(data);
     return true;
   }
@@ -89,6 +89,8 @@ function setUI(data) {
     document.getElementById("dt-status").innerHTML="Admin";
     // Debug console toggler
     document.getElementById("dt-debug-console-toggler").style.display="initial";
+    // Registration button
+    $("#dt-register-button").hide();
   }
 }
 
@@ -98,6 +100,8 @@ function resetUI() {
   document.getElementById("dt-signin-button").style.display="initial";
   // Debug console toggler
   document.getElementById("dt-debug-console-toggler").style.display="none";
+  // Registration button
+  $("#dt-register-button").show();
 }
 
 // Additional session data :: DIF between fetchClientData and storeClientData: fetch recalls everything at once
@@ -107,58 +111,58 @@ function fetchClientData(data) { // while, store, stores everything on demand (o
     sessionId=dataSplit[0];
     // Language Data
     $.post("/unnamed-project/php/session.php", {sessionVar: "language", sessionId}, function(data, status) {
-      if(debugLogs)console.log("session.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
+      displayConLog("session.php", "server replied: "+data+"\tstatus: "+status);
       if(checkSession(data)) { // Data fetch successful?
         if(data==language) {
-          if(debugLogs)console.log("\tStatus:\t\t\tLanguage already synced.");
+          displayConLog("", "Language already synced");
         } else {
           changeLang();
-          if(debugLogs)console.log("\tStatus:\t\t\tLanguage changed successfully.");
+          displayConLog("", "Language changed successfully");
         }
       } else {
-        if(debugLogs)console.log("Critical Error:\t\tLanguage could not be set.");
+        displayConLog("", "Language could not be set", true);
       }
     });
   } else {
     // Load cookies
-    if(debugLogs)console.log("Cookies:\t\t\tfetched");
+    displayConLog("cookies", "Fetched");
     checkCookies();
   }
 }
 
 function storeClientData(sessionVar, sessionVarValue) { // Update session variables (and database) or client cookies, depending on session status
   if(sessionActive===true) { // Session active?
-    if(debugLogs)console.log("\tStore:\t\t\tStoring data to database.");
+    displayConLog("store", "Storing data to database");
     $.post("/unnamed-project/php/session.php", {sessionVar, sessionVarValue, sessionId}, function(data, status) {
-      if(debugLogs)console.log("session.php:\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
+      displayConLog("session.php", "Server replied: "+data+"\tStatus: "+status);
       if(checkSession(data)) { // Data stored successfully?
-        if(debugLogs)console.log("\tStatus:\t\t\tData stored successfully.");
+        displayConLog("session.php", "Data stored successfully");
       } else {
-        if(debugLogs)console.log("Critical Error:\t\tData could not be stored.");
+        displayConLog("session.php", "Data could not be stored", true);
       }
     });
   } else {
-    if(debugLogs)console.log("\tStore:\t\t\tStoring data to cookies.");
+    displayConLog("store", "Storing data to cookies");
     setCookie("language", language, 1);
-    if(debugLogs)console.log("\tCookie status:\tlanguage cookie set to "+language);
+    displayConLog("cookies", "Language cookie set to "+language);
   }
 }
 
 function checkSession(data) {
   if(data==="error code 4") {
-    if(debugLogs)console.log("\tSession Error:\tId doesn't exist.");
+    displayConLog("session", "ID doesn't exist", true);
     return false;
   } else if (data==="error code 2") {
-    if(debugLogs)console.log("\tSession Error:\tOops! Something went wrong. Please try again later.");
+    displayConLog("session", "Oops! Something went wrong. Please try again later.", true);
     return false;
   } else if (data==="error code 3") {
-    if(debugLogs)console.log("\tSession Error:\tStatement could not be prepared.");
+    displayConLog("session", "Statement could not be prepared", true);
     return false;
   } else if (data==="status code 3") {
-    if(debugLogs)console.log("\tSession Status:\tData stored successfully.");
+    displayConLog("session", "Data stored successfully");
     return true;
   } else {
-    if(debugLogs)console.log("\tSession Status:\tRecovered data can be used safely.");
+    displayConLog("session", "Recovered data can be used safely");
     return true;
   }
 }
@@ -194,12 +198,20 @@ function checkCookies() {
     if(clanguage!=language) {
       changeLang();
       language=clanguage;
-      if(debugLogs)console.log("\tCookie status:\tlanguage changed to "+clanguage);
+      displayConLog("cookies", "language change to "+clanguage);
     } else {
-      if(debugLogs)console.log("\tCookie status:\tlanguage cookie is already synced");
+      displayConLog("cookies", "language cookie is already synced");
     }
   } else {
     setCookie("language", language, 1);
-    if(debugLogs)console.log("\tCookie status:\tlanguage cookie set to "+language);
+    displayConLog("cookies", "language cookie set to "+language);
+  }
+}
+
+function displayConLog(source, str, isError=false) {
+  if(debugLogs) {
+    if(!source=="") source=source+" - ";
+    if(isError) console.log(source+"error:\t"+str);
+    else console.log(source+"status:\t"+str);
   }
 }
