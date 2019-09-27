@@ -176,6 +176,22 @@ a.dt-top-link:hover, a.dt-top-link:active {
   display:none;
 }
 
+/* Registration Form */
+#dt-registration-form {
+  width:20%;
+}
+
+#dt-sign-up-button {
+  width:100%;
+}
+
+#dt-reg-form-error-box, #dt-reg-form-username-empty-error, #dt-reg-form-email-empty-error,
+#dt-reg-form-password-empty-error, #dt-reg-form-display-name-empty-error,
+#dt-reg-form-password-mismatch-error, #dt-reg-form-username-exists-error,
+#dt-error-box-header, #dt-unknown-fatal-error {
+  display:none;
+}
+
 /* ################################################################################ EXPERIMENTATION ZONE ################################################################################ */
 
 .dt-fiesta {

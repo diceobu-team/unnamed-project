@@ -4,6 +4,7 @@
 <!-- Information -->
 <title>unnamed-project</title>
 <meta charset="UTF-8">
+<meta name="page-name" content="index">
 <meta name="unnamed-project" content="width=device-width, initial-scale=1">
 <meta name="description" content="The Home Page of the unnamed-project.">
 <meta name="author" content="diceobu-team">
@@ -99,8 +100,15 @@
 
             <div class="dropdown-divider"></div>
 
-            <p class="langEng">Don't have an account?<br/><a class="text-primary langEng" href="register/register.html">Register!</a></p>
-            <p class="langGr">Δεν έχετε λογαριασμό;<br/><a class="text-primary langGr" href="register/register.html">Κάντε Εγγραφή!</a></p>
+            <div class="dt-sign-in-footer">
+              <p class="langEng">Don't have an account?</p>
+              <p class="langGr">Δεν έχετε λογαριασμό;</p>
+              <a href="register/register.html" class="text-primary">
+                <p class="langEng">Register!</p>
+                <p class="langGr">Κάντε Εγγραφή!</p>
+              </a>
+              <br/>
+            </div>
           </form>
         </div>
       </div>
@@ -115,7 +123,9 @@
     </div>
 
     <div class="btn-group dt-navbar-buttons" id="dt-display-name-button">
-      <button type="button" class="btn btn-outline-primary my-2 my-sm-0" id="dt-display-name-actual-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Guest</button>
+      <button type="button" class="btn btn-outline-primary my-2 my-sm-0" id="dt-display-name-actual-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Guest
+      </button>
       <div class="dropdown">
         <div class="dropdown-menu bg-dark text-primary dropdown-menu-right dt-navbar-dropdown-form-width">
           <form class="px-4 py-3">

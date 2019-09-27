@@ -11,18 +11,48 @@ function stopLoader() {
 // Language selection (toggle)
 function changeLang() {
   if(language=="Eng") {
+    // p.langEng & p.langGr elements
     Array.prototype.forEach.call(elemEng, changeToNone);
     Array.prototype.forEach.call(elemGr, changeToInitial);
+    // Status Block
+    if(isAdmin!==undefined) {
+      if(isAdmin) document.getElementById("dt-status").innerHTML="Διαχειριστής";
+      else document.getElementById("dt-status").innerHTML="Μέλος";
+    }
+    // Login Form Placeholders
     document.getElementById("dt-change-lang-button").innerHTML="Ελ";
     document.getElementById("dt-form-username-input").placeholder="Όνομα Χρήστη";
     document.getElementById("dt-form-password-input").placeholder="Κωδικός Πρόσβασης";
+    // Registration form Placeholders
+    if($("meta[name='page-name']").attr("content")=="register") {
+      document.getElementById("dt-reg-form-username-input").placeholder="Όνομα Χρήστη";
+      document.getElementById("dt-reg-form-email-input").placeholder="Ηλεκτρονική Διεύθυνση";
+      document.getElementById("dt-reg-form-password-input").placeholder="Κωδικός Πρόσβασης";
+      document.getElementById("dt-reg-form-repeat-password-input").placeholder="Κωδικός Πρόσβασης";
+      document.getElementById("dt-reg-form-display-name-input").placeholder="Προβαλλόμενο Όνομα";
+    }
     language="Gr";
   } else if(language=="Gr") {
+    // p.langEng & p.langGr elements
     Array.prototype.forEach.call(elemGr, changeToNone);
     Array.prototype.forEach.call(elemEng, changeToInitial);
+    // Status Block
+    if(isAdmin!==undefined) {
+      if(isAdmin) document.getElementById("dt-status").innerHTML="Admin";
+      else document.getElementById("dt-status").innerHTML="Member";
+    }
+    // Login form Placeholders
     document.getElementById("dt-change-lang-button").innerHTML="Eng";
     document.getElementById("dt-form-username-input").placeholder="Username";
     document.getElementById("dt-form-password-input").placeholder="Password";
+    // Registration form Placeholders
+    if($("meta[name='page-name']").attr("content")=="register") {
+      document.getElementById("dt-reg-form-username-input").placeholder="Username";
+      document.getElementById("dt-reg-form-email-input").placeholder="Email";
+      document.getElementById("dt-reg-form-password-input").placeholder="Password";
+      document.getElementById("dt-reg-form-repeat-password-input").placeholder="Password";
+      document.getElementById("dt-reg-form-display-name-input").placeholder="Display Name";
+    }
     language="Eng";
   }
 }
@@ -39,13 +69,10 @@ function changeToInitial(element) {
 function changeDebugLogs() {
   if(debugLogs) {
     debugLogs=false;
+    console.log("Logs deactivated.");
   } else {
     debugLogs=true;
-  }
-  if(debugLogs) {
     console.log("Logs activated.");
-  } else {
-    console.log("Logs deactivated.");
   }
 }
 
@@ -80,10 +107,12 @@ function setUI(data) {
   document.getElementById("dt-display-name-button").style.display="initial";
   document.getElementById("dt-display-name-actual-button").innerHTML=dataSplit[3];
   if(dataSplit[2]==0) { // User has status Member
+    isAdmin=false;
     // Sign in button & status block
     document.getElementById("dt-status-block").style.display="initial";
     document.getElementById("dt-status").innerHTML="Member";
   } else if(dataSplit[2]==1) { // User has status Admin
+    isAdmin=true;
     // Sign in button & status block
     document.getElementById("dt-status-block").style.display="initial";
     document.getElementById("dt-status").innerHTML="Admin";
