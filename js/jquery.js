@@ -1,5 +1,6 @@
 // Global Variables
-var developerMode=true;
+var developerMode=false;
+var devModeOverlaySlide=350;
 var language="Eng";
 var elemEng=document.getElementsByClassName("langEng");
 var elemGr=document.getElementsByClassName("langGr");
@@ -27,7 +28,10 @@ $(document).ready(function() {
       displayConLog("session", "inactive");
     }
     fetchClientData(data); // Depending on session status, fetches data from server database or client cookies
-    if(debugLogs) $("#dt-custom-switch").prop("checked", true);
+    if(debugLogs) {
+      $("#dt-custom-switch").prop("checked", true);
+      $("#dt-dev-mode-overlay-custom-switch").prop("checked", true);
+    }
   });
 });
 
@@ -49,10 +53,14 @@ $(document).ready(function() {
     storeClientData("language", language); // Depending on session status, stores language data to the server database or the client cookies
   });
 
-  // Debug toggler
+  // Debug togglers
   $("#dt-custom-switch").click(function() {
     changeDebugLogs();
   });
+  
+  $("#dt-dev-mode-overlay-custom-switch").click(function() {
+    changeDebugLogs();
+  })
 
   // Login
   $("#dt-login-button").click(function() {
@@ -148,19 +156,17 @@ $(document).ready(function() {
 
   // Dev Mode Overlay
   $("#dt-dev-mode-badge").click(function() {
-    $("#dt-dev-mode-overlay").toggle();
-    if($("#dt-dev-mode-overlay").is(":visible")) {
-      $("#dt-body").css("filter", "blur(2px)");
-      displayConLog("dev mode", "overlay active");
-    } else {
-      displayConLog("dev mode", "overlay idle");
-    }
+    $("#dt-body").css("filter", "blur(2px)");
+    displayConLog("dev mode", "overlay active");
+    $("#dt-dev-mode-overlay").slideDown(devModeOverlaySlide, function(){
+    });
   });
   
   $("#dt-dev-mode-overlay-x").click(function() {
-    $("#dt-dev-mode-overlay").hide();
-    $("#dt-body").css("filter", "blur(0px)");
-    displayConLog("dev mode", "overlay idle");
+    $("#dt-dev-mode-overlay").slideUp(devModeOverlaySlide, function(){
+      displayConLog("dev mode", "overlay idle");
+      $("#dt-body").css("filter", "blur(0px)");
+    });
   });
 
 });

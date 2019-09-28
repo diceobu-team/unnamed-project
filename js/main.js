@@ -76,9 +76,13 @@ function changeDebugLogs() {
   if(debugLogs) {
     debugLogs=false;
     console.log("Logs deactivated.");
+    $("#dt-custom-switch").prop("checked", false);
+    $("#dt-dev-mode-overlay-custom-switch").prop("checked", false);
   } else {
     debugLogs=true;
     console.log("Logs activated.");
+    $("#dt-custom-switch").prop("checked", true);
+    $("#dt-dev-mode-overlay-custom-switch").prop("checked", true);
   }
 }
 
