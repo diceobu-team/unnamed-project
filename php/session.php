@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
       $sessionVar=$_POST["sessionVar"];
       $sql="SELECT $sessionVar FROM accounts WHERE id = ?"; // Prepare select statement
       if($stmt = mysqli_prepare($link, $sql)) { // Statement prepared properly?
-        mysqli_stmt_bind_param($stmt, "s", $id); // Bind id to prepared statement
+        mysqli_stmt_bind_param($stmt, "i", $id); // Bind id to prepared statement
         if(mysqli_stmt_execute($stmt)) { // Statement executed properly?
           mysqli_stmt_store_result($stmt); // Store results
           if(mysqli_stmt_num_rows($stmt)==1) { // Id exist?

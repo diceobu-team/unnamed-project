@@ -7,43 +7,40 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
   if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) { // Already signed in?
     echo "error code 6";
   } else {
+    $id=NULL;
     $username=$_POST["username"];
-    $email=$_POST["email"];
     $password=$_POST["password"];
+    $admin=0;
+    $email=$_POST["email"];
     $displayName=$_POST["displayName"];
     $language=$_POST["language"];
     $sql="SELECT id FROM accounts WHERE username = ?"; // Prepare select statement
     if($stmt=mysqli_prepare($link, $sql)) { // Statement prepared properly?
-      mysqli_stmt_bind_param($stmt, "s", $id); // Bind id to prepared statement
+      mysqli_stmt_bind_param($stmt, "s", $username); // Bind username to prepared statement
       if(mysqli_stmt_execute($stmt)) { // Statement executed properly?
+        mysqli_stmt_store_result($stmt);
         if(mysqli_stmt_num_rows($stmt)==0) { // Username NOT in use?
-          // $ins_sql="INSERT INTO `accounts` (`id`, `username`, `password`, `admin`, `email`, `displayname`, `language`) VALUES (NULL, `" . $username . "`, `" . $password . "`, `0`, `" . $email . "`, `" . $displayName . "`, `" . $language . "`)";
-          // $ins_sql="INSERT INTO \"accounts\" (\"id\", \"username\", \"password\", \"admin\", \"email\", \"displayname\", \"language\") VALUES (NULL, \"" . $username . "\", \"" . $password . "\", \"0\", \"" . $email . "\", \"" . $displayName . "\", \"" . $language . "\")";
-          // $ins_sql="INSERT INTO accounts (id, username, password, admin, email, displayname, language) VALUES (NULL, " . $username . ", " . $password . ", 0, " . $email . ", " . $displayName . ", " . $language . ")";
-          // $ins_sql="INSERT INTO accounts (id, username, password, admin, email, displayname, language) VALUES (NULL, '";
-          // $ins_sql.=$username;
-          // $ins_sql.="', '";
-          // $ins_sql.=$password;
-          // $ins_sql.="', '0', '";
-          // $ins_sql.=$email;
-          // $ins_sql.="', '";
-          // $ins_sql.=$displayName;
-          // $ins_sql.="', '";
-          // $ins_sql.=$language;
-          // $ins_sql.="')";
-          // $ins_sql="INSERT INTO accounts (id, username, password, admin, email, displayname, language) VALUES ('NULL', 'yikes', 'dwda', '0', 'john@example.com', 'dawfa', 'Eng')";
-          // $ins_sql="INSERT INTO `accounts` (`id`, `username`, `password`, `admin`, `email`, `displayname`, `language`) VALUES (NULL, 'abcde', 'abcde', '0', 'abcde', 'abcde', 'abcde')";
-          $ins_sql="SELECT * FROM accounts WHERE username=obdsf";
-          if(mysqli_query($link, $ins_sql)) {
-            echo "status code 4";
+          $ins_sql="INSERT INTO accounts (id, username, password, admin, email, displayname, language) VALUES (?, ?, ?, ?, ?, ?, ?)";
+          if($ins_stmt=mysqli_prepare($link, $ins_sql)) {
+            mysqli_stmt_bind_param($ins_stmt, "ississs", $id, $username, $password, $admin, $email, $displayName, $language);
+            if(mysqli_stmt_execute($ins_stmt)) {
+              mysqli_stmt_execute($stmt);
+              mysqli_stmt_store_result($stmt);
+              mysqli_stmt_bind_result($stmt, $id);
+              mysqli_stmt_fetch($stmt);
+              $_SESSION["loggedin"]=true;
+              $_SESSION["id"]=$id;
+              $_SESSION["username"]=$username;
+              $_SESSION["admin"]=$admin;
+              $_SESSION["displayName"]=$displayName;
+              echo "status code 4";
+            } else {
+              echo "error code 7";
+            }
+            mysqli_stmt_close($ins_stmt); // Close statement.
           } else {
-            // echo "error code 7";
-            echo $ins_sql;
+            echo "error code 8"; // Statement could not be prepared.
           }
-          // $new_stmt=mysqli_prepare($link, $ins_sql);
-          // mysqli_stmt_bind_param($new_stmt, "s", $id);
-          // mysqli_stmt_execute($new_stmt);
-          // echo "status code 4";
         } else {
           echo "error code 5"; // Username is already in use.
         }
@@ -54,7 +51,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
       echo "error code 3"; // Statement could not be prepared.
     }
     mysqli_stmt_close($stmt); // Close statement.
-    // mysqli_stmt_close($new_stmt); // Close statement.
     mysqli_close($link); // Close connection.
   }
 }

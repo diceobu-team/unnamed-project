@@ -1,10 +1,16 @@
 // CSS Loader
 function stopLoader() {
+  var fLoadingTime=0;
+  var fadeOutTime=500;
+  if(!developerMode) {
+    fLoadingTime+=2000;
+    fadeOutTime+=1000;
+  }
   $(window).on("load", function() {
     setTimeout(function() {
       var loader=$('.sk-folding-cube-wrapper');
-      loader.fadeOut(1000);  // Loader Fadeout Time
-    }, 0); // Fake Loading Time (Default: 2000, Dev Mode: 0)
+      loader.fadeOut(fadeOutTime);  // Loader Fadeout Time
+    }, fLoadingTime); // Fake Loading Time (Default: 2000, Dev Mode: 0)
   });
 }
 
@@ -127,6 +133,7 @@ function resetUI() {
   // Sign in button & status block
   document.getElementById("dt-display-name-button").style.display="none";
   document.getElementById("dt-signin-button").style.display="initial";
+  document.getElementById("dt-display-name-actual-button").innerHTML="Guest";
   // Debug console toggler
   document.getElementById("dt-debug-console-toggler").style.display="none";
   // Registration button
@@ -243,4 +250,52 @@ function displayConLog(source, str, isError=false) {
     if(isError) console.log(source+"error:\t"+str);
     else console.log(source+"status:\t"+str);
   }
+}
+
+// Registration
+function checkReg(data) {
+  if(data==="error code 5") {
+    displayConLog("register", "username is already in use", true);
+    setErrorBox("usr-in-use");
+    // setErrorBox();
+    return true;
+  } else if (data==="error code 6") {
+    displayConLog("register", "already signed in, redirecting...", true); // Redirect to Home Page
+    $(location).attr("href", "../index.html");
+    return true;
+  } else if (data==="error code 2" || data==="error code 7") {
+    displayConLog("register", "Oops! Something went wrong. Please try again later.", true);
+    $(location).attr("href", "register.html"); // Refresh Page
+    return true;
+  } else if (data==="error code 3" || data==="error code 8") {
+    displayConLog("register", "Statement could not be prepared.", true);
+    $(location).attr("href", "register.html"); // Refresh Page
+    return true;
+  } else if (data==="status code 4") {
+    displayConLog("register", "successfully registered account");
+    return false;
+  } else {
+    displayConLog("register", "unknown fatal error occured");
+    return true
+  }
+}
+
+function setErrorBox(code="err-box") {
+  if(code==="err-box") $("#dt-reg-form-error-box").show();
+  else if(code==="usr-emp") $("#dt-reg-form-username-empty-error").show();
+  else if(code==="email-emp") $("#dt-reg-form-email-empty-error").show();
+  else if(code==="pass-emp") $("#dt-reg-form-password-empty-error").show();
+  else if(code==="disp-emp") $("#dt-reg-form-display-name-empty-error").show();
+  else if(code==="pass-mismatch") $("#dt-reg-form-password-mismatch-error").show();
+  else if(code==="usr-in-use") $("#dt-reg-form-username-exists-error").show();
+}
+
+function clearErrorBox() {
+  $("#dt-reg-form-error-box").hide();
+  $("#dt-reg-form-username-empty-error").hide();
+  $("#dt-reg-form-email-empty-error").hide();
+  $("#dt-reg-form-password-empty-error").hide();
+  $("#dt-reg-form-display-name-empty-error").hide();
+  $("#dt-reg-form-password-mismatch-error").hide();
+  $("#dt-reg-form-username-exists-error").hide();
 }
