@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Information -->
+<title>unnamed-project</title>
+<meta charset="UTF-8">
+<meta name="page-name" content="register">
+<meta name="unnamed-project" content="width=device-width, initial-scale=1">
+<meta name="description" content="The Registration Page of the unnamed-project.">
+<meta name="author" content="diceobu-team">
+<link rel="logo icon" type="image/x-icon" href="../../img/logo.ico"/>
+<!-- /Information -->
+
+<!-- Dependancies -->
+<!-- Other -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">  <!-- Bootstrap css -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>                              <!-- jQuery Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>                     <!-- Popper JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>                        <!-- Bootstrap js -->
+<!-- Custom -->
+<link href="../../css/main.css" rel="stylesheet" type="text/css">
+<script src="../../js/main.js"></script>
+<script src="../../js/jquery.js"></script>
+<!-- /Dependancies -->
+
+</head>
+<body class="dt-home">
+
+<!-------------------- Common Section -------------------->
+
+<!--CSS Loader-->
+<div class="sk-folding-cube-wrapper" id="dt-loader">
+    <div class="sk-folding-cube">
+      <div class="sk-cube1 sk-cube"></div>
+      <div class="sk-cube2 sk-cube"></div>
+      <div class="sk-cube4 sk-cube"></div>
+      <div class="sk-cube3 sk-cube"></div>
+    </div>
+</div>
+
+<!-- Dev Mode Overlay -->
+<div id="dt-dev-mode-overlay">
+  <div id="dt-dev-mode-overlay-box">
+    <button class="btn btn-outline-danger" id="dt-dev-mode-overlay-x">
+      &times;
+    </button>
+    <div id="dt-dev-mode-overlay-box-options">
+      <div class="custom-control custom-switch" id="dt-dev-mode-overlay-debug-console-toggler">
+        <input type="checkbox" class="custom-control-input" id="dt-dev-mode-overlay-custom-switch">
+        <label class="custom-control-label" for="dt-dev-mode-overlay-custom-switch"><p lang="en" class="langEng">Debug Logs</p><p lang="el" class="langGr">Aποσφαλμάτωση</p></label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page Body -->
+<div id="dt-body">
+
+  <!-- Top Logo -->
+  <div class="container-fluid pb-2 mt-4 mb-2 border-bottom">
+    <div class="row">
+      <div class="col-lg-4 dt-top-logo"><a class="dt-top-link" href="../index.html">unnamed<strong class="dt-unchanged-logo-part">-project</strong></a></div>
+      <div class="col-lg-4 d-none d-lg-block"></div>
+      <div class="col-lg-4 d-none d-lg-block dt-top-logo-quote lead"><p lang="en" class="langEng">It's gonna be Diceobu!</p><p lang="el" class="langGr">Όλα θα πάνε καλά!</p></div>
+    </div>
+  </div>
+  
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-5 py-lg-2">
+  
+    <a class="navbar-brand text-primary" href="../index.html">unnamed-project</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbar-content">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html"><p lang="en" class="langEng">Home</p><p lang="el" class="langGr">Αρχική</p></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../tool/tool.html"><p lang="en" class="langEng">Tool</p><p lang="el" class="langGr">Εργαλείο</p></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../documentation/documentation.html"><p lang="en" class="langEng">Documentation</p><p lang="el" class="langGr">Έγγραφα</p></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../about/about.html"><p lang="en" class="langEng">About</p><p lang="el" class="langGr">Σχετικά</p></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../help/help.html"><p lang="en" class="langEng">Help</p><p lang="el" class="langGr">Βοήθεια</p></a>
+        </li>
+      </ul>
+  
+      <button class="btn btn-outline-warning dt-navbar-buttons" id="dt-dev-mode-badge">
+        <p lang="en" class="langEng">Dev Mode</p>
+        <p lang="el" class="langGr">Προγραμματιστής</p>
+      </button>
+  
+      <button class="btn btn-outline-primary my-2 my-sm-0 dt-navbar-buttons" id="dt-change-lang-button">Eng</button>
+  
+      <div class="btn-group dt-navbar-buttons" id="dt-signin-button">
+        <button type="button" class="btn btn-outline-primary my-2 my-sm-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <p lang="en" class="langEng">Sign in</p><p lang="el" class="langGr">Είσοδος</p>
+        </button>
+  
+        <div class="dropdown">
+          <div class="dropdown-menu bg-dark text-primary dropdown-menu-right dt-navbar-dropdown-form-width" id="dt-sign-in-dropdown">
+            <form class="px-4 py-3">
+  
+              <div class="form-group">
+                <label for="Username"><p lang="en" class="langEng">Username</p><p lang="el" class="langGr">Όνομα Χρήστη</p></label>
+                <input type="text" class="form-control dt-kappa" id="dt-form-username-input" placeholder="Username" name="username">
+              </div>
+  
+              <div class="form-group">
+                <label for="Password"><p lang="en" class="langEng">Password</p><p lang="el" class="langGr">Κωδικός Πρόσβασης</p></label>
+                <input type="text" class="form-control dt-kappa" id="dt-form-password-input" placeholder="Password" name="password">
+              </div>
+  
+              <div class="form-group">
+                <button type="button" class="btn btn-outline-primary dt-kappa" id="dt-login-button"><p lang="en" class="langEng">Login</p><p lang="el" class="langGr">Σύνδεση</p></button>
+              </div>
+  
+              <div class="dropdown-divider"></div>
+  
+              <div class="dt-sign-in-footer">
+                <p lang="en" class="langEng">Don't have an account?</p>
+                <p lang="el" class="langGr">Δεν έχετε λογαριασμό;</p>
+                <a href="#" class="text-primary">
+                  <p lang="en" class="langEng">Register!</p>
+                  <p lang="el" class="langGr">Κάντε Εγγραφή!</p>
+                </a>
+                <br/>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  
+      <div class="btn-group dt-navbar-buttons" id="dt-display-name-button">
+        <button type="button" class="btn btn-outline-primary my-2 my-sm-0" id="dt-display-name-actual-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Guest</button>
+        <div class="dropdown">
+          <div class="dropdown-menu bg-dark text-primary dropdown-menu-right dt-navbar-dropdown-form-width">
+            <form class="px-4 py-3">
+  
+              <div id="dt-status-block">
+                <strong>
+                  <p lang="en" class="langEng">Status:</p>
+                  <p lang="el" class="langGr">Κατάσταση:</p>
+                </strong>
+                <p id="dt-status">guest</p>
+              </div>
+  
+              <div class="custom-control custom-switch" id="dt-debug-console-toggler">
+                <input type="checkbox" class="custom-control-input" id="dt-custom-switch">
+                <label class="custom-control-label" for="dt-custom-switch"><p lang="en" class="langEng">Debug Logs</p><p lang="el" class="langGr">Aποσφαλμάτωση</p></label>
+              </div>
+
+              <div id="dt-go-to-control-panel-button">
+                <a class="btn btn-outline-primary" href="../control/control.html">
+                  <p lang="en" class="langEng">Control Panel</p>
+                  <p lang="el" class="langGr">Πίνακας Ελέγχου</p>
+                </a>
+              </div>
+  
+              <div class="dropdown-divider"></div>
+  
+              <div class="form-group">
+                <button type="button" class="btn btn-outline-primary" id="dt-logout-button"><p lang="en" class="langEng">Logout</p><p lang="el" class="langGr">Αποσύνδεση</p></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </nav>
+  <!-------------------- /Common Section -------------------->
+  
+  <div class="container" id="dt-registration-form">
+    <form>
+  
+      <br/>
+      <h3 class="text-left langEng">Please fill in this form to create an account.</h3>
+      <h3 class="text-left langGr">Παρακαλώ συμπληρώστε αυτή τη φόρμα για να δημιουργίσετε έναν λογαριασμό.</h3>
+      <hr/>
+  
+      <div class="form-group">
+        <label for="username"><p lang="en" class="langEng">Username</p><p lang="el" class="langGr">Όνομα Χρήστη</p></label>
+        <input type="text" class="form-control" id="dt-reg-form-username-input" placeholder="Username" name="username">
+      </div>
+  
+      <div class="form-group">
+        <label for="email"><p lang="en" class="langEng">Email</p><p lang="el" class="langGr">Ηλεκτρονική Διεύθυνση</p></label>
+        <input type="text" class="form-control" id="dt-reg-form-email-input" placeholder="Email" name="email">
+      </div>
+  
+      <div class="form-group">
+        <label for="password"><p lang="en" class="langEng">Password</p><p lang="el" class="langGr">Κωδικός Πρόσβασης</p></label>
+        <input type="text" class="form-control" id="dt-reg-form-password-input" placeholder="Password" name="password">
+      </div>
+  
+      <div class="form-group">
+        <label for="repeat-password"><p lang="en" class="langEng">Repeat Password</p><p lang="el" class="langGr">Επανάληψη Κωδικού Πρόσβασης</p></label>
+        <input type="text" class="form-control" id="dt-reg-form-repeat-password-input" placeholder="Password" name="repeat-password">
+      </div>
+  
+      <div class="form-group">
+        <label for="display-name"><p lang="en" class="langEng">Display Name</p><p lang="el" class="langGr">Προβαλλόμενο Όνομα</p></label>
+        <input type="text" class="form-control" id="dt-reg-form-display-name-input" placeholder="Display Name" name="display-name">
+      </div>
+  
+      <div class="alert alert-danger" id="dt-reg-form-error-box">
+        <h5 lang="en" class="langEng">Please resolve the following issues before continuing:</h5>
+        <h5 lang="el" class="langGr">Παρακαλώ διορθώστε τα παρακάτω πριν συνεχίσετε:</h5>
+        <div id="dt-reg-form-username-empty-error">
+          <p lang="en" class="langEng">Username cannot be empty!</p>
+          <p lang="el" lang="el" class="langGr">Το όνομα χρήστη δε μπορεί να είναι κενό!</p>
+        </div>
+        <div id="dt-reg-form-email-empty-error">
+          <p lang="en" class="langEng">Email cannot be empty!</p>
+          <p lang="el" class="langGr">Η Ηλεκτρονική Διεύθυνση δε μπορεί να είναι κενή!</p>
+        </div>
+        <div id="dt-reg-form-password-empty-error">
+          <p lang="en" class="langEng">Password cannot be empty!</p>
+          <p lang="el" class="langGr">Ο Κωδικός Πρόσβασης δε μπορεί να είναι κενός!</p>
+        </div>
+        <div id="dt-reg-form-display-name-empty-error">
+          <p lang="en" class="langEng">Display Name cannot be empty!</p>
+          <p lang="el" class="langGr">Το Προβαλλόμενο Όνομα δε μπορεί να είναι κενό!</p>
+        </div>
+        <div id="dt-reg-form-password-mismatch-error">
+          <p lang="en" class="langEng">Passwords do not match!</p>
+          <p lang="el" class="langGr">Οι κωδικοί δεν είναι ήδηοι!</p>
+        </div>
+        <div id="dt-reg-form-username-exists-error">
+          <p lang="en" class="langEng">Username is already in use!</p>
+          <p lang="el" class="langGr">Το Όνομα Χρήστη υπάρχει ήδη!</p>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <button type="button" class="btn btn-outline-primary" id="dt-sign-up-button">
+          <p lang="en" class="langEng">Sign up</p><p lang="el" class="langGr">Εγγραφή</p>
+        </button>
+      </div>
+  
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

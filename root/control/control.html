@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Information -->
+<title>unnamed-project</title>
+<meta charset="UTF-8">
+<meta name="page-name" content="control">
+<meta name="unnamed-project" content="width=device-width, initial-scale=1">
+<meta name="description" content="The Control Panel of the unnamed-project.">
+<meta name="author" content="diceobu-team">
+<link rel="logo icon" type="image/x-icon" href="../../img/logo.ico"/>
+<!-- /Information -->
+
+<!-- Dependancies -->
+<!-- Other -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">  <!-- Bootstrap css -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  <!-- jQuery Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>  <!-- Popper JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  <!-- Bootstrap js -->
+<link rel="stylesheet" href="http://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+<script src="http://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+<script src="../../leaflet/L.KML.js"></script>
+<!-- Custom -->
+<link href="../../css/main.css" rel="stylesheet" type="text/css">
+<script src="../../js/main.js"></script>
+<script src="../../js/jquery.js"></script>
+<!-- /Dependancies -->
+
+</head>
+<body class="dt-home">
+
+<!-------------------- Common Section -------------------->
+
+<!--CSS Loader-->
+<div class="sk-folding-cube-wrapper" id="dt-loader">
+    <div class="sk-folding-cube">
+      <div class="sk-cube1 sk-cube"></div>
+      <div class="sk-cube2 sk-cube"></div>
+      <div class="sk-cube4 sk-cube"></div>
+      <div class="sk-cube3 sk-cube"></div>
+    </div>
+</div>
+
+<!-- Dev Mode Overlay -->
+<div id="dt-dev-mode-overlay">
+  <div id="dt-dev-mode-overlay-box">
+    <button class="btn btn-outline-danger" id="dt-dev-mode-overlay-x">
+      &times;
+    </button>
+    <div id="dt-dev-mode-overlay-box-options">
+      <div class="custom-control custom-switch" id="dt-dev-mode-overlay-debug-console-toggler">
+        <input type="checkbox" class="custom-control-input" id="dt-dev-mode-overlay-custom-switch">
+        <label class="custom-control-label" for="dt-dev-mode-overlay-custom-switch"><p lang="en" class="langEng">Debug Logs</p><p lang="el" class="langGr">Aποσφαλμάτωση</p></label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page Body -->
+<div id="dt-body">
+
+  <!-- Top Logo -->
+  <div class="container-fluid pb-2 mt-4 mb-2 border-bottom">
+    <div class="row">
+      <div class="col-lg-4 dt-top-logo"><a class="dt-top-link" href="../index.html">unnamed<strong class="dt-unchanged-logo-part">-project</strong></a></div>
+      <div class="col-lg-4 d-none d-lg-block"></div>
+      <div class="col-lg-4 d-none d-lg-block dt-top-logo-quote lead"><p class="langEng">It's gonna be Diceobu!</p><p class="langGr">Όλα θα πάνε καλά!</p></div>
+    </div>
+  </div>
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-5 py-lg-2">
+  
+    <a class="navbar-brand text-primary" href="../index.html">unnamed-project</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-content">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html"><p class="langEng">Home</p><p class="langGr">Αρχική</p></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../tool/tool.html"><p class="langEng">Tool</p><p class="langGr">Εργαλείο</p></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../documentation/documentation.html"><p class="langEng">Documentation</p><p class="langGr">Έγγραφα</p></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../about/about.html"><p class="langEng">About</p><p class="langGr">Σχετικά</p></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../help/help.html"><p class="langEng">Help</p><p class="langGr">Βοήθεια</p></a>
+        </li>
+      </ul>
+  
+      <button class="btn btn-outline-warning dt-navbar-buttons" id="dt-dev-mode-badge">
+        <p lang="en" class="langEng">Dev Mode</p>
+        <p lang="el" class="langGr">Προγραμματιστής</p>
+      </button>
+  
+      <button class="btn btn-outline-primary my-2 my-sm-0 dt-navbar-buttons" id="dt-change-lang-button">Eng</button>
+  
+      <div class="btn-group dt-navbar-buttons" id="dt-signin-button">
+        <button type="button" class="btn btn-outline-primary my-2 my-sm-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <p class="langEng">Sign in</p><p class="langGr">Είσοδος</p>
+        </button>
+  
+        <div class="dropdown">
+          <div class="dropdown-menu bg-dark text-primary dropdown-menu-right dt-navbar-dropdown-form-width">
+            <form class="px-4 py-3">
+  
+              <div class="form-group">
+                <label for="Username"><p class="langEng">Username</p><p class="langGr">Όνομα Χρήστη</p></label>
+                <input type="text" class="form-control" id="dt-form-username-input" placeholder="Username" name="username">
+              </div>
+  
+              <div class="form-group">
+                <label for="Password"><p class="langEng">Password</p><p class="langGr">Κωδικός Πρόσβασης</p></label>
+                <input type="text" class="form-control" id="dt-form-password-input" placeholder="Password" name="password">
+              </div>
+  
+              <div class="form-group">
+                <button type="button" class="btn btn-outline-primary" id="dt-login-button"><p class="langEng">Login</p><p class="langGr">Σύνδεση</p></button>
+              </div>
+  
+              <div class="dropdown-divider"></div>
+  
+              <div class="dt-sign-in-footer">
+                <p class="langEng">Don't have an account?</p>
+                <p class="langGr">Δεν έχετε λογαριασμό;</p>
+                <a href="register/register.html" class="text-primary">
+                  <p class="langEng">Register!</p>
+                  <p class="langGr">Κάντε Εγγραφή!</p>
+                </a>
+                <br/>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  
+      <div class="dt-navbar-buttons" id="dt-register-button">
+        <a href="register/register.html">
+          <button type="button" class="btn btn-outline-primary">
+            <p class="langEng">Register</p><p class="langGr">Εγγραφή</p>
+          </button>
+        </a>
+      </div>
+  
+      <div class="btn-group dt-navbar-buttons" id="dt-display-name-button">
+        <button type="button" class="btn btn-outline-primary my-2 my-sm-0" id="dt-display-name-actual-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Guest
+        </button>
+        <div class="dropdown">
+          <div class="dropdown-menu bg-dark text-primary dropdown-menu-right dt-navbar-dropdown-form-width">
+            <form class="px-4 py-3">
+  
+              <div id="dt-status-block">
+                <strong>Status:</strong><p id="dt-status">guest</p>
+              </div>
+  
+              <div class="custom-control custom-switch" id="dt-debug-console-toggler">
+                <input type="checkbox" class="custom-control-input" id="dt-custom-switch">
+                <label class="custom-control-label" for="dt-custom-switch"><p class="langEng">Debug Logs</p><p class="langGr">Aποσφαλμάτωση</p></label>
+              </div>
+
+              <div id="dt-go-to-control-panel-button">
+                <a class="btn btn-outline-primary" href="#">
+                  <p lang="en" class="langEng">Control Panel</p>
+                  <p lang="el" class="langGr">Πίνακας Ελέγχου</p>
+                </a>
+              </div>
+  
+              <div class="dropdown-divider"></div>
+  
+              <div class="form-group">
+                <button type="button" class="btn btn-outline-primary" id="dt-logout-button"><p class="langEng">Logout</p><p class="langGr">Αποσύνδεση</p></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </nav>
+  <!-------------------- /Common Section -------------------->
+  
+  <!-- Main Content -->
+
+  <div class="container-fluid">
+    <br/>
+    <div class="row">
+      <div class="col-lg-3 col-md-4">
+        <div id="dt-control-panel-options-box">
+          <div class="dt-control-panel-boxes" id="dt-upload-kml-map">
+            <h5 lang="en" class="langEng">Submit KML File</h5>
+            <h5 lang="el" class="langGr">Υποβάλετε το KML αρχείο</h5>
+            <hr/>
+            <form action="/unnamed-project/php/upload.php" method="post" enctype="multipart/form-data">
+              <label for="KML-Map-File-Name"><p lang="en" class="langEng">KML File Name</p><p lang="el" class="langGr">Όνομα KML Αρχείου</p></label>
+              <input type="text" class="form-control" id="dt-control-form-map-file-name" placeholder="KML File Name" name="KML-Map-File-Name">
+              <br>
+              <label for="KML-Map-Name"><p lang="en" class="langEng">Map Name</p><p lang="el" class="langGr">Όνομα Χάρτη</p></label>
+              <input type="text" class="form-control" id="dt-control-form-map-name" placeholder="Map Name" name="KML-Map-Name">
+              <br>
+              <input type="file" name="KML-Map" id="KML-Map">
+              <br>
+              <br>
+              <input type="submit" id="dt-control-form-submit-button" value="Upload KML File" name="submit">
+            </form>
+          </div>  
+          <div class="dt-control-panel-boxes" id="dt-delete-kml-map">
+            <h5 lang="en" class="langEng">Delete Map</h5>
+            <h5 lang="el" class="langGr">Διαγραφή Χάρτη</h5>
+            <hr/>
+            <label for="Map-Name"><p lang="en" class="langEng">Map Name</p><p lang="el" class="langGr">Όνομα Χάρτη</p></label>
+            <input type="text" class="form-control" id="dt-control-form-delete-map-name" placeholder="Map Name" name="Map-Name">
+            <br>
+            <button class="btn btn-outline-primary" id="dt-control-panel-delete-button">
+              <p lang="en" class="langEng">Delete</p>
+              <p lang="el" class="langGr">Διαγραφή</p>
+            </button>
+          </div>
+          <div class="dt-control-panel-boxes" id="dt-load-kml-map">
+            <h5 lang="en" class="langEng">Load Map</h5>
+            <h5 lang="el" class="langGr">Φόρτωση Χάρτη</h5>
+            <hr/>
+            <label for="Map-Name"><p lang="en" class="langEng">Map Name</p><p lang="el" class="langGr">Όνομα Χάρτη</p></label>
+            <input type="text" class="form-control" id="dt-control-form-load-map-name" placeholder="Map Name" name="Map-Name">
+            <br>
+            <button class="btn btn-outline-primary" id="dt-control-panel-load-button">
+              <p lang="en" class="langEng">Load</p>
+              <p lang="el" class="langGr">Φόρτωση</p>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Left (Options Panel) & Right (Map) || LINE -->
+      <div class="col-lg-9 col-md-8">
+        <div class="dt-control-panel-boxes embed-responsive embed-responsive-16by9" id="dt-control-panel-map"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

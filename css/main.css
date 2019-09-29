@@ -159,13 +159,9 @@ a.dt-top-link:hover, a.dt-top-link:active {
   display:none;
 }
 
-/* #dt-change-lang-button {
-  width: 54px;
+#dt-register-button {
+  display:initial;
 }
-
-#dt-signin-button, #dt-display-name-actual-button {
-  width: 90px;
-} */
 
 /* Navbar Form */
 .dt-navbar-dropdown-form-width {
@@ -180,9 +176,114 @@ a.dt-top-link:hover, a.dt-top-link:active {
   display:none;
 }
 
-/* ################################################################################ EXPERIMENTATION ZONE ################################################################################ */
+#dt-go-to-control-panel-button {
+  display:none;
+}
 
-.dt-fiesta {
-  background-image:url('../img/neon-city-lights.gif');
-  background-size:cover;
+/* Registration Form */
+#dt-registration-form {
+  width:20%;
+}
+
+#dt-sign-up-button {
+  width:100%;
+}
+
+#dt-reg-form-error-box, #dt-reg-form-username-empty-error, #dt-reg-form-email-empty-error,
+#dt-reg-form-password-empty-error, #dt-reg-form-display-name-empty-error,
+#dt-reg-form-password-mismatch-error, #dt-reg-form-username-exists-error,
+#dt-error-box-header, #dt-unknown-fatal-error {
+  display:none;
+}
+
+/* Dev Mode Badge */
+#dt-dev-mode-badge {
+  display:none;
+}
+
+#dt-dev-mode-overlay {
+  display:none;
+  width:100%;
+  height:100%;
+  z-index:10000;
+  position:fixed;
+  top:0;
+  left:0;
+  background-color:rgba(0, 0, 0, 0.5);
+}
+
+#dt-dev-mode-overlay-box {
+  position:absolute;
+  width:30%;
+  height:40%;
+  background-color:rgb(223, 223, 223);
+  border:0.1em solid #f0ac4e;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  overflow:auto;
+}
+
+#dt-dev-mode-overlay-x {
+  position:absolute;
+  top:1%;
+  right:1%;
+}
+
+#dt-dev-mode-overlay-box-options {
+  position:absolute;
+  overflow:auto;
+  width:auto;
+  height:auto;
+  top:15%;
+  margin:5%;
+  text-align:center;
+}
+
+/* Main Tool Window */
+#dt-main-tool-window {
+  position:absolute;
+  overflow:auto;
+  width:90%;
+  height:auto;
+  text-align:center;
+  /* left:5%; */
+  top:20%;
+  bottom:0;
+  border:0.1em solid rgba(0, 0, 0, 0.5);
+}
+
+/* Control Panel */
+#dt-control-panel-options-box {
+  
+}
+
+.dt-control-panel-boxes {
+  border:0.1em solid rgba(0, 0, 0, 0.5);
+  padding:1em;
+  width:100%;
+  overflow:auto;
+}
+
+#dt-upload-kml-map {
+
+}
+
+#dt-load-kml-map {
+  
+}
+
+#dt-control-panel-map {
+  margin-right: 0em;
+  padding: 1em;
+  height:100%;
+  overflow:hidden;
+}
+
+#dt-control-panel-load-button {
+  width:100%;
+}
+
+#dt-control-panel-delete-button {
+  width:100%;
 }
