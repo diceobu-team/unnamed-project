@@ -17,6 +17,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  <!-- jQuery Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>  <!-- Popper JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  <!-- Bootstrap js -->
+<link rel="stylesheet" href="http://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+<script src="http://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+<script src="../../leaflet/L.KML.js"></script>
 <!-- Custom -->
 <link href="../../css/main.css" rel="stylesheet" type="text/css">
 <script src="../../js/main.js"></script>
@@ -186,10 +189,8 @@
   <br/>
   <br/>
 
-  <div class="embed-responsive" id="dt-main-tool-window">
-    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"></iframe>
-  </div>
-  
+  <div class="dt-control-panel-boxes embed-responsive embed-responsive-16by9" id="dt-control-panel-map"></div>
+
   <div class="container">
     <br/>
     <br/>

@@ -15,6 +15,8 @@ var fatalErrorOccured=false;
 $(document).ready(function() {
   // Dev Mode Badge
   if(developerMode) $("#dt-dev-mode-badge").show()
+  // Tool Page
+  if($("meta[name='page-name']").attr("content")=="tool") loadTool();
   // Fetch user data
   $.post("/unnamed-project/php/login.php", function(data, status) {
     displayConLog("login.php", "\n\tServer replied:\t"+data+"\n\tStatus:\t\t\t"+status);
