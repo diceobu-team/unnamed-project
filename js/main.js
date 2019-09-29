@@ -42,8 +42,9 @@ function changeLang() {
       document.getElementById("dt-control-form-map-file-name").placeholder="Όνομα KML Αρχείου";
       document.getElementById("dt-control-form-map-name").placeholder="Όνομα Χάρτη";
       document.getElementById("dt-control-form-submit-button").value="Αναίβασμα KML Αρχείου";
-      document.getElementById("dt-control-form-delete-map-name").placeholder="Όνομα Χάρτη";
       document.getElementById("dt-control-form-load-map-name").placeholder="Όνομα Χάρτη";
+      document.getElementById("dt-control-form-set-map-name").placeholder="Όνομα Χάρτη";
+      document.getElementById("dt-control-form-delete-map-name").placeholder="Όνομα Χάρτη";
     }
     language="Gr";
   } else if(language=="Gr") {
@@ -72,8 +73,9 @@ function changeLang() {
       document.getElementById("dt-control-form-map-file-name").placeholder="KML File Name";
       document.getElementById("dt-control-form-map-name").placeholder="Map Name";
       document.getElementById("dt-control-form-submit-button").value="Upload KML File";
-      document.getElementById("dt-control-form-delete-map-name").placeholder="Map Name";
       document.getElementById("dt-control-form-load-map-name").placeholder="Map Name";
+      document.getElementById("dt-control-form-set-map-name").placeholder="Map Name";
+      document.getElementById("dt-control-form-delete-map-name").placeholder="Map Name";
     }
     language="Eng";
   }
