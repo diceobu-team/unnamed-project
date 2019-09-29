@@ -29,13 +29,20 @@ function changeLang() {
     document.getElementById("dt-change-lang-button").innerHTML="Ελ";
     document.getElementById("dt-form-username-input").placeholder="Όνομα Χρήστη";
     document.getElementById("dt-form-password-input").placeholder="Κωδικός Πρόσβασης";
-    // Registration form Placeholders
+    // Registration Form Placeholders
     if($("meta[name='page-name']").attr("content")=="register") {
       document.getElementById("dt-reg-form-username-input").placeholder="Όνομα Χρήστη";
       document.getElementById("dt-reg-form-email-input").placeholder="Ηλεκτρονική Διεύθυνση";
       document.getElementById("dt-reg-form-password-input").placeholder="Κωδικός Πρόσβασης";
       document.getElementById("dt-reg-form-repeat-password-input").placeholder="Κωδικός Πρόσβασης";
       document.getElementById("dt-reg-form-display-name-input").placeholder="Προβαλλόμενο Όνομα";
+    }
+    // Control Panel
+    if($("meta[name='page-name']").attr("content")=="control") {
+      document.getElementById("dt-control-form-map-file-name").placeholder="Όνομα KML Αρχείου";
+      document.getElementById("dt-control-form-map-name").placeholder="Όνομα Χάρτη";
+      document.getElementById("dt-control-form-submit-button").value="Αναίβασμα KML Αρχείου";
+      document.getElementById("dt-control-form-load-map-name").placeholder="Όνομα Χάρτη";
     }
     language="Gr";
   } else if(language=="Gr") {
@@ -51,13 +58,20 @@ function changeLang() {
     document.getElementById("dt-change-lang-button").innerHTML="Eng";
     document.getElementById("dt-form-username-input").placeholder="Username";
     document.getElementById("dt-form-password-input").placeholder="Password";
-    // Registration form Placeholders
+    // Registration Form Placeholders
     if($("meta[name='page-name']").attr("content")=="register") {
       document.getElementById("dt-reg-form-username-input").placeholder="Username";
       document.getElementById("dt-reg-form-email-input").placeholder="Email";
       document.getElementById("dt-reg-form-password-input").placeholder="Password";
       document.getElementById("dt-reg-form-repeat-password-input").placeholder="Password";
       document.getElementById("dt-reg-form-display-name-input").placeholder="Display Name";
+    }
+    // Control Panel
+    if($("meta[name='page-name']").attr("content")=="control") {
+      document.getElementById("dt-control-form-map-file-name").placeholder="KML File Name";
+      document.getElementById("dt-control-form-map-name").placeholder="Map Name";
+      document.getElementById("dt-control-form-submit-button").value="Upload KML File";
+      document.getElementById("dt-control-form-load-map-name").placeholder="Map Name";
     }
     language="Eng";
   }
@@ -128,6 +142,8 @@ function setUI(data) {
     document.getElementById("dt-status").innerHTML="Admin";
     // Debug console toggler
     document.getElementById("dt-debug-console-toggler").style.display="initial";
+    // Control panel button
+    $("#dt-go-to-control-panel-button").show();
     // Registration button
     $("#dt-register-button").hide();
   }
@@ -140,6 +156,8 @@ function resetUI() {
   document.getElementById("dt-display-name-actual-button").innerHTML="Guest";
   // Debug console toggler
   document.getElementById("dt-debug-console-toggler").style.display="none";
+  // Control panel button
+  $("#dt-go-to-control-panel-button").hide();
   // Registration button
   $("#dt-register-button").show();
 }

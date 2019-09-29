@@ -1,5 +1,5 @@
 // Global Variables
-var developerMode=false;
+var developerMode=true;
 var devModeOverlaySlide=350;
 var language="Eng";
 var elemEng=document.getElementsByClassName("langEng");
@@ -22,10 +22,12 @@ $(document).ready(function() {
     if(sessionActive) {
       displayConLog("session", "active");
       if($("meta[name='page-name']").attr("content")=="register") $(location).attr("href", "../index.html");
+      if(!isAdmin) if($("meta[name='page-name']").attr("content")=="control") $(location).attr("href", "../index.html");
     } else {
       sessionId=undefined;
       isAdmin=undefined;
       displayConLog("session", "inactive");
+      if($("meta[name='page-name']").attr("content")=="control") $(location).attr("href", "../index.html");
     }
     fetchClientData(data); // Depending on session status, fetches data from server database or client cookies
     if(debugLogs) {
@@ -101,6 +103,7 @@ $(document).ready(function() {
           $("#dt-custom-switch").prop("checked", false);
         }
       }
+      if($("meta[name='page-name']").attr("content")=="control") $(location).attr("href", "../index.html");
     });
   });
 
@@ -169,4 +172,38 @@ $(document).ready(function() {
     });
   });
 
+  // Control Panel Map Load
+  $("#dt-control-panel-load-button").click(function() {
+    displayConLog("control", "requesting map information");
+    var mapName=$("#dt-control-form-load-map-name").val();
+    $.post("/unnamed-project/php/load.php", {mapName}, function(data, status) {
+      displayConLog("load.php", "Server replied: "+data+"\tStatus: "+status);
+      var rawPolygons=data.split("|#|");
+      var polygonUniqueID=new Array;
+      var polygonName=new Array;
+      var polygonID=new Array;
+      var polygonPoint=new Array;
+      var polygonCoords=new Array;
+      rawPolygons.forEach(function(value, index, array) {
+        if(index>0) {
+          var rawPolygonsRow=value.split("\n");
+          polygonUniqueID[index-1]=rawPolygonsRow[0];
+          polygonName[index-1]=rawPolygonsRow[1];
+          polygonID[index-1]=rawPolygonsRow[2];
+          polygonPoint[index-1]=rawPolygonsRow[3];
+          polygonCoords[index-1]="[["+rawPolygonsRow[4].replace(/ /g, "], [")+"]]";
+        }
+      });
+      console.log(polygonUniqueID);
+      console.log(polygonName);
+      console.log(polygonID);
+      console.log(polygonPoint);
+      console.log(polygonCoords);
+
+      // D3-EDITS START
+
+      // D3-EDITS END
+
+    });
+  });
 });

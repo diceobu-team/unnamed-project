@@ -176,6 +176,10 @@ a.dt-top-link:hover, a.dt-top-link:active {
   display:none;
 }
 
+#dt-go-to-control-panel-button {
+  display:none;
+}
+
 /* Registration Form */
 #dt-registration-form {
   width:20%;
@@ -222,7 +226,7 @@ a.dt-top-link:hover, a.dt-top-link:active {
 
 #dt-dev-mode-overlay-x {
   position:absolute;
-  top:3%;
+  top:1%;
   right:1%;
 }
 
@@ -234,4 +238,28 @@ a.dt-top-link:hover, a.dt-top-link:active {
   top:15%;
   margin:5%;
   text-align:center;
+}
+
+/* Main Tool Window */
+#dt-main-tool-window {
+  position:absolute;
+  overflow:auto;
+  width:90%;
+  height:auto;
+  text-align:center;
+  left:5%;
+  top:20%;
+  bottom:0;
+  border:0.1em solid rgba(0, 0, 0, 0.5);
+}
+
+/* Control Panel Submit */
+.dt-control-panel-boxes {
+  border:0.1em solid rgba(0, 0, 0, 0.5);
+  padding:1em;
+  overflow:auto;
+}
+
+#dt-control-panel-load-button {
+  width:100%;
 }
