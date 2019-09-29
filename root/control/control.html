@@ -17,6 +17,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  <!-- jQuery Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>  <!-- Popper JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  <!-- Bootstrap js -->
+<link rel="stylesheet" href="http://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+<script src="http://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+<script src="../../leaflet/L.KML.js"></script>
 <!-- Custom -->
 <link href="../../css/main.css" rel="stylesheet" type="text/css">
 <script src="../../js/main.js"></script>
@@ -190,45 +193,50 @@
     <br/>
     <br/>
     <div class="row">
-      <div class="col-lg-3">
-        <div class="dt-control-panel-boxes" id="dt-upload-kml-map">
-          <h5 lang="en" class="langEng">Submit KML File</h5>
-          <h5 lang="el" class="langGr">Υποβάλετε το KML αρχείο</h5>
-          <hr/>
-          <form action="/unnamed-project/php/upload.php" method="post" enctype="multipart/form-data">
-            <label for="KML-Map-File-Name"><p lang="en" class="langEng">KML File Name</p><p lang="el" class="langGr">Όνομα KML Αρχείου</p></label>
-            <input type="text" class="form-control" id="dt-control-form-map-file-name" placeholder="KML File Name" name="KML-Map-File-Name">
-            <br>
-            <label for="KML-Map-Name"><p lang="en" class="langEng">Map Name</p><p lang="el" class="langGr">Όνομα Χάρτη</p></label>
-            <input type="text" class="form-control" id="dt-control-form-map-name" placeholder="Map Name" name="KML-Map-Name">
-            <br>
-            <input type="file" name="KML-Map" id="KML-Map">
-            <br>
-            <br>
-            <input type="submit" id="dt-control-form-submit-button" value="Upload KML File" name="submit">
-          </form>
+      <div class="col-lg-2">
+        <div class="row">
+          <div class="dt-control-panel-boxes" id="dt-upload-kml-map">
+            <h5 lang="en" class="langEng">Submit KML File</h5>
+            <h5 lang="el" class="langGr">Υποβάλετε το KML αρχείο</h5>
+            <hr/>
+            <form action="/unnamed-project/php/upload.php" method="post" enctype="multipart/form-data">
+              <label for="KML-Map-File-Name"><p lang="en" class="langEng">KML File Name</p><p lang="el" class="langGr">Όνομα KML Αρχείου</p></label>
+              <input type="text" class="form-control" id="dt-control-form-map-file-name" placeholder="KML File Name" name="KML-Map-File-Name">
+              <br>
+              <label for="KML-Map-Name"><p lang="en" class="langEng">Map Name</p><p lang="el" class="langGr">Όνομα Χάρτη</p></label>
+              <input type="text" class="form-control" id="dt-control-form-map-name" placeholder="Map Name" name="KML-Map-Name">
+              <br>
+              <input type="file" name="KML-Map" id="KML-Map">
+              <br>
+              <br>
+              <input type="submit" id="dt-control-form-submit-button" value="Upload KML File" name="submit">
+            </form>
+          </div>  
+        </div>
+        <div class="row">
+          <div>
+            <div class="dt-control-panel-boxes" id="dt-load-kml-map">
+              <h5 lang="en" class="langEng">Load Map</h5>
+              <h5 lang="el" class="langGr">Φόρτωση Χάρτη</h5>
+              <hr/>
+              <label for="Map-Name"><p lang="en" class="langEng">Map Name</p><p lang="el" class="langGr">Όνομα Χάρτη</p></label>
+              <input type="text" class="form-control" id="dt-control-form-load-map-name" placeholder="Map Name" name="Map-Name">
+              <br>
+              <button class="btn btn-outline-primary" id="dt-control-panel-load-button">
+                <p lang="en" class="langEng">Load</p>
+                <p lang="el" class="langGr">Φόρτωση</p>
+              </button>
+            </div>
+          </div>          
         </div>
       </div>
-      <div class="col-lg-3"></div>
-      <div class="col-lg-3"></div>
-      <div class="col-lg-3">
-        <div class="dt-control-panel-boxes">
-          <h5 lang="en" class="langEng">Load Map</h5>
-          <h5 lang="el" class="langGr">Φόρτωση Χάρτη</h5>
-          <hr/>
-          <label for="Map-Name"><p lang="en" class="langEng">Map Name</p><p lang="el" class="langGr">Όνομα Χάρτη</p></label>
-          <input type="text" class="form-control" id="dt-control-form-load-map-name" placeholder="Map Name" name="Map-Name">
-          <br>
-          <button class="btn btn-outline-primary" id="dt-control-panel-load-button">
-            <p lang="en" class="langEng">Load</p>
-            <p lang="el" class="langGr">Φόρτωση</p>
-          </button>
+      <div class="col-lg-10">
+        <div class="dt-control-panel-boxes" id="dt-control-panel-map">
         </div>
       </div>
+     </div>
     </div>
-
-    </div>
-
+  </div>
 </div>
 
 </body>

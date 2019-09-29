@@ -11,6 +11,13 @@ if(developerMode) var debugLogs=true;
 else var debugLogs=false;
 var fatalErrorOccured=false;
 
+var polygonUniqueID=new Array;
+var polygonName=new Array;
+var polygonID=new Array;
+var polygonPoint=new Array;
+var polygonCoords=new Array;
+
+
 // On page load
 $(document).ready(function() {
   // Dev Mode Badge
@@ -179,11 +186,11 @@ $(document).ready(function() {
     $.post("/unnamed-project/php/load.php", {mapName}, function(data, status) {
       displayConLog("load.php", "Server replied: "+data+"\tStatus: "+status);
       var rawPolygons=data.split("|#|");
-      var polygonUniqueID=new Array;
-      var polygonName=new Array;
-      var polygonID=new Array;
-      var polygonPoint=new Array;
-      var polygonCoords=new Array;
+      // var polygonUniqueID=new Array;
+      // var polygonName=new Array;
+      // var polygonID=new Array;
+      // var polygonPoint=new Array;
+      // var polygonCoords=new Array;
       rawPolygons.forEach(function(value, index, array) {
         if(index>0) {
           var rawPolygonsRow=value.split("\n");
@@ -201,7 +208,7 @@ $(document).ready(function() {
       console.log(polygonCoords);
 
       // D3-EDITS START
-
+      FNC();
       // D3-EDITS END
 
     });

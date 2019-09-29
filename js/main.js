@@ -321,3 +321,38 @@ function clearErrorBox() {
   $("#dt-reg-form-password-mismatch-error").hide();
   $("#dt-reg-form-username-exists-error").hide();
 }
+
+
+// Control Panel Map
+function FNC() {
+  console.log("he");
+  // Make basemap
+  const map = new L.Map('dt-control-panel-map', { center: new L.LatLng(40.6401, 22.9444), zoom: 15 });
+  const osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+  map.addLayer(osm);
+
+  var drawnItems = new L.FeatureGroup()
+  map.addLayer(drawnItems);
+
+  var polyLayers = [];
+
+  //##################
+  var polygons = new Array;
+
+
+
+  polygonCoords.forEach(function(value, index, array) {
+    console.log(value);
+    polygons[index] = L.polygon(value);
+    polyLayers.push(polygons[index]);
+    console.log(polygons);
+  });
+
+  //##################
+  console.log(polyLayers);
+
+  for(layer of polyLayers) {
+    console.log("polygons");
+    drawnItems.addLayer(layer);	
+  }
+}
