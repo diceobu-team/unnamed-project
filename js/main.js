@@ -42,6 +42,7 @@ function changeLang() {
       document.getElementById("dt-control-form-map-file-name").placeholder="Όνομα KML Αρχείου";
       document.getElementById("dt-control-form-map-name").placeholder="Όνομα Χάρτη";
       document.getElementById("dt-control-form-submit-button").value="Αναίβασμα KML Αρχείου";
+      document.getElementById("dt-control-form-delete-map-name").placeholder="Όνομα Χάρτη";
       document.getElementById("dt-control-form-load-map-name").placeholder="Όνομα Χάρτη";
     }
     language="Gr";
@@ -71,6 +72,7 @@ function changeLang() {
       document.getElementById("dt-control-form-map-file-name").placeholder="KML File Name";
       document.getElementById("dt-control-form-map-name").placeholder="Map Name";
       document.getElementById("dt-control-form-submit-button").value="Upload KML File";
+      document.getElementById("dt-control-form-delete-map-name").placeholder="Map Name";
       document.getElementById("dt-control-form-load-map-name").placeholder="Map Name";
     }
     language="Eng";
@@ -324,7 +326,7 @@ function clearErrorBox() {
 
 
 // Control Panel Map
-function FNC() {
+function FNC(polygonCoords) {
   console.log("he");
   // Make basemap
   const map = new L.Map('dt-control-panel-map', { center: new L.LatLng(40.6401, 22.9444), zoom: 15 });

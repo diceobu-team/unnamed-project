@@ -254,37 +254,36 @@ a.dt-top-link:hover, a.dt-top-link:active {
 }
 
 /* Control Panel */
+#dt-control-panel-options-box {
+  
+}
+
 .dt-control-panel-boxes {
   border:0.1em solid rgba(0, 0, 0, 0.5);
   padding:1em;
-  /* margin:0.2em; */
-  margin-left: 1em;
-  margin-bottom: 0.5em;
+  width:100%;
+  overflow:auto;
+}
 
+#dt-upload-kml-map {
 
-  width:auto;
-  height:100%;
-  overflow:none;
 }
 
 #dt-load-kml-map {
-  width:130%;
+  
+}
+
+#dt-control-panel-map {
+  margin-right: 0em;
+  padding: 1em;
+  height:100%;
+  overflow:hidden;
 }
 
 #dt-control-panel-load-button {
   width:100%;
 }
 
-
-#dt-control-panel-map {
-  margin-right: 0em;
-  padding: 1em;
-  /* height:100%;
-  text-align:center; */
-}
-
-#dt-control-panel-map-frame {
-  height:100%;
+#dt-control-panel-delete-button {
   width:100%;
-  overflow:none;
 }
