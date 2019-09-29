@@ -193,7 +193,7 @@ $(document).ready(function() {
             polygonName[index-1]=rawPolygonsRow[1];
             polygonID[index-1]=rawPolygonsRow[2];
             polygonPoint[index-1]=rawPolygonsRow[3];
-            polygonCoords[index-1]="[["+rawPolygonsRow[4].replace(/ /g, "], [")+"]]";
+            polygonCoords[index-1]=rawPolygonsRow[4].replace(/ /g, ",");
           }
         });
         console.log(polygonUniqueID);
@@ -203,7 +203,7 @@ $(document).ready(function() {
         console.log(polygonCoords);
   
         // D3-EDITS START
-        FNC(polygonCoords);
+        FNC(polygonCoords,polygonUniqueID);
         // D3-EDITS END
       }
     });
