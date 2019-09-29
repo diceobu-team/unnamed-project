@@ -326,35 +326,41 @@ function clearErrorBox() {
 
 
 // Control Panel Map
-function FNC(polygonCoords) {
-  console.log("he");
+function FNC(polygonCoords, polygonUniqueID) {
+
+  //Make polygonCoords usable (Array of Arrays)
+  polygonCoords.forEach(function(value, index, array) {
+    var a = polygonCoords[index].split(',');
+    var b = [];
+    for (var i=0; i<a.length; i=i+2){
+      b.push([Number(a[i+1]),Number(a[i])]);
+    }
+    polygonCoords[index] = b;
+  });
+
   // Make basemap
   const map = new L.Map('dt-control-panel-map', { center: new L.LatLng(40.6401, 22.9444), zoom: 15 });
   const osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
   map.addLayer(osm);
 
-  var drawnItems = new L.FeatureGroup()
+  var drawnItems = new L.FeatureGroup().on('click',polyonclick);
   map.addLayer(drawnItems);
-
   var polyLayers = [];
 
-  //##################
-  var polygons = new Array;
-
-
-
+  // Make polygons
   polygonCoords.forEach(function(value, index, array) {
-    console.log(value);
-    polygons[index] = L.polygon(value);
-    polyLayers.push(polygons[index]);
-    console.log(polygons);
+    var polygons = L.polygon(polygonCoords[index],{"uid": Number(polygonUniqueID[index])});//.addTo(map);
+    polyLayers.push(polygons);
   });
 
-  //##################
-  console.log(polyLayers);
-
+  // Add polygons to FeatureGroup
   for(layer of polyLayers) {
-    console.log("polygons");
     drawnItems.addLayer(layer);	
+  }
+
+  // Click handler for polygons/featuregroup
+  function polyonclick(event) {
+    var uid = event.layer.options.uid;
+    console.log(uid);
   }
 }

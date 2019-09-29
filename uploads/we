@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2" xmlns:ns3="http://www.w3.org/2005/Atom" xmlns:ns4="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0">
+    <Document>
+        <LookAt>
+            <longitude>9.19778182607638</longitude>
+            <latitude>-43.36540698999306</latitude>
+            <altitude>8645022.15915955</altitude>
+            <heading>0.0</heading>
+            <tilt>0.0</tilt>
+            <range>6985631.350453062</range>
+            <altitudeMode>clampToGround</altitudeMode>
+        </LookAt>
+        <Folder>
+            <name>geonode:population_data_per_block</name>
+            <LookAt>
+                <longitude>-40.7325742819973</longitude>
+                <latitude>-35.89296779652669</latitude>
+                <altitude>8043035.6419277955</altitude>
+                <heading>0.0</heading>
+                <tilt>0.0</tilt>
+                <range>6499194.66933147</range>
+                <altitudeMode>clampToGround</altitudeMode>
+            </LookAt>
+            <Placemark id="population_data_per_block.1">
+                <name>population_data_per_block.1</name>
+                <description>&lt;h4&gt;population_data_per_block&lt;/h4&gt;
+
+&lt;ul class="textattributes"&gt;
+  
+  &lt;li&gt;&lt;strong&gt;&lt;span class="atr-name"&gt;gid&lt;/span&gt;:&lt;/strong&gt; &lt;span class="atr-value"&gt;2725&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;span class="atr-name"&gt;ESYE_CODE&lt;/span&gt;:&lt;/strong&gt; &lt;span class="atr-value"&gt;2377&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;span class="atr-name"&gt;Population&lt;/span&gt;:&lt;/strong&gt; &lt;span class="atr-value"&gt;81&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+                <LookAt>
+                    <longitude>22.934352730985893</longitude>
+                    <latitude>40.64318383292396</latitude>
+                    <altitude>142.62613523689546</altitude>
+                    <heading>0.0</heading>
+                    <tilt>0.0</tilt>
+                    <range>115.24939825043509</range>
+                    <altitudeMode>clampToGround</altitudeMode>
+                </LookAt>
+                <Style>
+                    <IconStyle>
+                        <color>0011ffff</color>
+                        <scale>0.4</scale>
+                        <heading>0.0</heading>
+                        <Icon>
+                            <href>http://icons.opengeo.org/markers/icon-poly.1.png</href>
+                            <refreshInterval>0.0</refreshInterval>
+                            <viewRefreshTime>0.0</viewRefreshTime>
+                            <viewBoundScale>1.0</viewBoundScale>
+                        </Icon>
+                    </IconStyle>
+                    <LabelStyle>
+                        <color>00ffffff</color>
+                        <scale>0.0</scale>
+                    </LabelStyle>
+                    <LineStyle>
+                        <color>ff00fff0</color>
+                        <width>1.0</width>
+                    </LineStyle>
+                    <PolyStyle>
+                        <color>ffaaaaaa</color>
+                        <outline>1</outline>
+                    </PolyStyle>
+                </Style>
+                <MultiGeometry>
+                    <Point>
+                        <coordinates>22.93441007414772,40.64316461309677</coordinates>
+                    </Point>
+                    <Polygon>
+                        <outerBoundaryIs>
+                            <LinearRing>
+<tessellate>1</tessellate>
+<coordinates>22.93400457702626,40.643012616714856 22.934564545884665,40.64362253212651 22.934701483452614,40.64362940780963 22.934523984921857,40.64273825698915 22.934003983175426,40.643004301797234 22.93400457702626,40.643012616714856</coordinates>
+                            </LinearRing>
+                        </outerBoundaryIs>
+                    </Polygon>
+                </MultiGeometry>
+            </Placemark>
+            <Placemark id="population_data_per_block.2">
+                <name>population_data_per_block.2</name>
+                <description>&lt;h4&gt;population_data_per_block&lt;/h4&gt;
+
+&lt;ul class="textattributes"&gt;
+  
+  &lt;li&gt;&lt;strong&gt;&lt;span class="atr-name"&gt;gid&lt;/span&gt;:&lt;/strong&gt; &lt;span class="atr-value"&gt;2486&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;span class="atr-name"&gt;ESYE_CODE&lt;/span&gt;:&lt;/strong&gt; &lt;span class="atr-value"&gt;2163&lt;/span&gt;&lt;/li&gt;
+  
+&lt;/ul&gt;
+</description>
+                <LookAt>
+                    <longitude>22.933287125017742</longitude>
+                    <latitude>40.63956304167512</latitude>
+                    <altitude>450.5152961981911</altitude>
+                    <heading>0.0</heading>
+                    <tilt>0.0</tilt>
+                    <range>364.0399896079258</range>
+                    <altitudeMode>clampToGround</altitudeMode>
+                </LookAt>
+                <Style>
+                    <IconStyle>
+                        <color>00ffffff</color>
+                        <scale>0.4</scale>
+                        <heading>0.0</heading>
+                        <Icon>
+                            <href>http://icons.opengeo.org/markers/icon-poly.1.png</href>
+                            <refreshInterval>0.0</refreshInterval>
+                            <viewRefreshTime>0.0</viewRefreshTime>
+                            <viewBoundScale>1.0</viewBoundScale>
+                        </Icon>
+                    </IconStyle>
+                    <LabelStyle>
+                        <color>00ffffff</color>
+                        <scale>0.0</scale>
+                    </LabelStyle>
+                    <LineStyle>
+                        <color>ff000000</color>
+                        <width>1.0</width>
+                    </LineStyle>
+                    <PolyStyle>
+                        <color>ffaaaaaa</color>
+                        <outline>1</outline>
+                    </PolyStyle>
+                </Style>
+                <MultiGeometry>
+                    <Point>
+                        <coordinates>22.93342093529474,40.63950376538084</coordinates>
+                    </Point>
+                    <Polygon>
+                        <outerBoundaryIs>
+                            <LinearRing>
+<tessellate>1</tessellate>
+<coordinates>22.93203756248032,40.63887444058661 22.93183015066753,40.63904908068617 22.931890329193475,40.6391037694026 22.931890135590656,40.639115915573704 22.931623091867234,40.63934288449596 22.931575726013126,40.63935639141871 22.931711304600036,40.6394788767313 22.93178454012615,40.639499153111174 22.931769173219656,40.63956305417955 22.931753862413917,40.63956816900282 22.931669085603335,40.639548586685244 22.93145700669199,40.63938319315188 22.93139060800189,40.63944077272571 22.931391622474806,40.63950389115281 22.931405250061285,40.63954277812861 22.931432908766695,40.639573669275336 22.93147897889532,40.63960182914331 22.931705802345025,40.639648504509815 22.932444774338524,40.63976754478425 22.93323624549484,40.63990884878341 22.933261665772612,40.63993525780618 22.93435020892206,40.64013363103168 22.93452448514861,40.640176528732546 22.934641399688395,40.64028579319175 22.93472982943262,40.640328630038624 22.934786469525324,40.64034307696901 22.93483266438833,40.64033911054245 22.935183686356915,40.64015910960426 22.93472379716283,40.63963093815987 22.934505843038163,40.63880871323349 22.934481500730925,40.6387842665683 22.93445999027353,40.638782975355575 22.934069320954798,40.63898497989791 22.934015087014824,40.639004165544996 22.933234222248366,40.63907120537393 22.932096241151392,40.63886014084421 22.93203756248032,40.63887444058661</coordinates>
+                            </LinearRing>
+                        </outerBoundaryIs>
+                    </Polygon>
+                </MultiGeometry>
+            </Placemark>
+            <Placemark id="population_data_per_block.3">
+                <name>population_data_per_block.3</name>
+                <description>&lt;h4&gt;population_data_per_block&lt;/h4&gt;
+
+&lt;ul class="textattributes"&gt;
+  
+  &lt;li&gt;&lt;strong&gt;&lt;span class="atr-name"&gt;gid&lt;/span&gt;:&lt;/strong&gt; &lt;span class="atr-value"&gt;745&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;span class="atr-name"&gt;ESYE_CODE&lt;/span&gt;:&lt;/strong&gt; &lt;span class="atr-value"&gt;546&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;span class="atr-name"&gt;Population&lt;/span&gt;:&lt;/strong&gt; &lt;span class="atr-value"&gt;331&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+                <LookAt>
+                    <longitude>22.955245660049243</longitude>
+                    <latitude>40.603903503644005</latitude>
+                    <altitude>145.72475469416716</altitude>
+                    <heading>0.0</heading>
+                    <tilt>0.0</tilt>
+                    <range>117.75324529967682</range>
+                    <altitudeMode>clampToGround</altitudeMode>
+                </LookAt>
+                <Style>
+                    <IconStyle>
+                        <color>00ffffff</color>
+                        <scale>0.4</scale>
+                        <heading>0.0</heading>
+                        <Icon>
+                            <href>http://icons.opengeo.org/markers/icon-poly.1.png</href>
+                            <refreshInterval>0.0</refreshInterval>
+                            <viewRefreshTime>0.0</viewRefreshTime>
+                            <viewBoundScale>1.0</viewBoundScale>
+                        </Icon>
+                    </IconStyle>
+                    <LabelStyle>
+                        <color>00ffffff</color>
+                        <scale>0.0</scale>
+                    </LabelStyle>
+                    <LineStyle>
+                        <color>ff000000</color>
+                        <width>1.0</width>
+                    </LineStyle>
+                    <PolyStyle>
+                        <color>ffaaaaaa</color>
+                        <outline>1</outline>
+                    </PolyStyle>
+                </Style>
+                <MultiGeometry>
+                    <Point>
+                        <coordinates>22.95522969796583,40.60390838134561</coordinates>
+                    </Point>
+                    <Polygon>
+                        <outerBoundaryIs>
+                            <LinearRing>
+<tessellate>1</tessellate>
+<coordinates>22.954707888974728,40.6041876647569 22.955564468266548,40.60424063324161 22.95578343654876,40.60366407325679 22.955757583533945,40.60365277429903 22.954870293512474,40.60356637155229 22.954707888974728,40.6041876647569</coordinates>
+                            </LinearRing>
+                        </outerBoundaryIs>
+                    </Polygon>
+                </MultiGeometry>
+            </Placemark>
+ 
+        </Folder>
+    </Document>
+</kml>
