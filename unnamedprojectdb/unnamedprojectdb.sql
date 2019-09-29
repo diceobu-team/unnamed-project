@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2019 at 04:00 PM
+-- Generation Time: Sep 30, 2019 at 12:30 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -51,6 +51,25 @@ INSERT INTO `accounts` (`id`, `username`, `password`, `admin`, `email`, `display
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `maps`
+--
+
+CREATE TABLE `maps` (
+  `id` int(11) NOT NULL,
+  `name` text COLLATE latin1_general_cs NOT NULL,
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+
+--
+-- Dumping data for table `maps`
+--
+
+INSERT INTO `maps` (`id`, `name`, `active`) VALUES
+(13, 'salonika', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `salonika`
 --
 
@@ -83,6 +102,12 @@ ALTER TABLE `accounts`
   ADD UNIQUE KEY `USERNAME` (`username`) USING HASH;
 
 --
+-- Indexes for table `maps`
+--
+ALTER TABLE `maps`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `salonika`
 --
 ALTER TABLE `salonika`
@@ -97,6 +122,12 @@ ALTER TABLE `salonika`
 --
 ALTER TABLE `accounts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique Identification Number', AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `maps`
+--
+ALTER TABLE `maps`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `salonika`
