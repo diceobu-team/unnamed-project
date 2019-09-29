@@ -287,3 +287,7 @@ a.dt-top-link:hover, a.dt-top-link:active {
 #dt-control-panel-delete-button {
   width:100%;
 }
+
+#dt-control-panel-set-button {
+  width:100%;
+}

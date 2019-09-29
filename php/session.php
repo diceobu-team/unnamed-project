@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
       if(isset($_POST["sessionId"])) {
         $id=$_POST["sessionId"];
         $sql="UPDATE accounts SET $sessionVar = '$sessionVarValue' WHERE id = ?"; // Prepare update statement
-        if($stmt = mysqli_prepare($link, $sql)) { // Statement prepared properly?
+        if($stmt=mysqli_prepare($link, $sql)) { // Statement prepared properly?
           mysqli_stmt_bind_param($stmt, "s", $id); // Bind id to prepared statement
           if(mysqli_stmt_execute($stmt)) { // Statement executed properly?
             echo "status code 3"; // Data stored successfully

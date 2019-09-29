@@ -45,9 +45,19 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         echo "<br/>";
       }
 
-      echo "<br/>";
+      $sql="SELECT id FROM maps WHERE name = ?";
+      $stmt=mysqli_prepare($link, $sql);
+      mysqli_stmt_bind_param($stmt, "s", $map_name);
+      mysqli_stmt_execute($stmt);
+      mysqli_stmt_store_result($stmt);
+      echo mysqli_stmt_num_rows($stmt);
+      if(mysqli_stmt_num_rows($stmt)==0) {
+        $sql="INSERT INTO `maps` (`id`, `name`, `active`) VALUES (?, ?, '0')";
+        $stmt=mysqli_prepare($link, $sql);
+        mysqli_stmt_bind_param($stmt, "is", $rowid, $map_name);
+        mysqli_stmt_execute($stmt);
+      }
 
-      echo "status code 5";
       mysqli_stmt_close($create_stmt); // Close statement.
       mysqli_stmt_close($stmt); // Close statement.
     } else {

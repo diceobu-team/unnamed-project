@@ -178,32 +178,58 @@ $(document).ready(function() {
     var mapName=$("#dt-control-form-load-map-name").val();
     $.post("/unnamed-project/php/load.php", {mapName}, function(data, status) {
       displayConLog("load.php", "Server replied: "+data+"\tStatus: "+status);
-      var rawPolygons=data.split("|#|");
-      var polygonUniqueID=new Array;
-      var polygonName=new Array;
-      var polygonID=new Array;
-      var polygonPoint=new Array;
-      var polygonCoords=new Array;
-      rawPolygons.forEach(function(value, index, array) {
-        if(index>0) {
-          var rawPolygonsRow=value.split("\n");
-          polygonUniqueID[index-1]=rawPolygonsRow[0];
-          polygonName[index-1]=rawPolygonsRow[1];
-          polygonID[index-1]=rawPolygonsRow[2];
-          polygonPoint[index-1]=rawPolygonsRow[3];
-          polygonCoords[index-1]="[["+rawPolygonsRow[4].replace(/ /g, "], [")+"]]";
-        }
-      });
-      console.log(polygonUniqueID);
-      console.log(polygonName);
-      console.log(polygonID);
-      console.log(polygonPoint);
-      console.log(polygonCoords);
-
-      // D3-EDITS START
-      FNC(polygonCoords);
-      // D3-EDITS END
-
+      if(data==="error code 13") displayConLog("load.php", "requested data could not be fetched");
+      else {
+        var rawPolygons=data.split("|#|");
+        var polygonUniqueID=new Array;
+        var polygonName=new Array;
+        var polygonID=new Array;
+        var polygonPoint=new Array;
+        var polygonCoords=new Array;
+        rawPolygons.forEach(function(value, index, array) {
+          if(index>0) {
+            var rawPolygonsRow=value.split("\n");
+            polygonUniqueID[index-1]=rawPolygonsRow[0];
+            polygonName[index-1]=rawPolygonsRow[1];
+            polygonID[index-1]=rawPolygonsRow[2];
+            polygonPoint[index-1]=rawPolygonsRow[3];
+            polygonCoords[index-1]="[["+rawPolygonsRow[4].replace(/ /g, "], [")+"]]";
+          }
+        });
+        console.log(polygonUniqueID);
+        console.log(polygonName);
+        console.log(polygonID);
+        console.log(polygonPoint);
+        console.log(polygonCoords);
+  
+        // D3-EDITS START
+        FNC(polygonCoords);
+        // D3-EDITS END
+      }
     });
   });
+
+  // Control Panel Map Set
+  $("#dt-control-panel-set-button").click(function() {
+    displayConLog("control", "setting main map");
+    var mapName=$("#dt-control-form-set-map-name").val();
+    $.post("/unnamed-project/php/set.php", {mapName}, function(data, status) {
+      displayConLog("set.php", "Server replied: "+data+"\tStatus: "+status);
+      if(data==="status code 5") displayConLog("set.php", "no active map found, specified map was set to active");
+      else if(data==="status code 6") displayConLog("set.php", "active map found and was reset, specified map was set to active");
+      else displayConLog("set.php", "fatal error occured");
+    });
+  })
+
+  $("#dt-control-panel-delete-button").click(function() {
+    displayConLog("control", "setting main map");
+    var mapName=$("#dt-control-form-delete-map-name").val();
+    $.post("/unnamed-project/php/delete.php", {mapName}, function(data, status) {
+      displayConLog("delete.php", "Server replied: "+data+"\tStatus: "+status);
+      if(data==="status code 7") displayConLog("delete.php", "given map was deleted successfully");
+      else if(data==="error code 14") displayConLog("delete.php", "could not delete map reference");
+      else displayConLog("delete.php", "fatal error occured");
+    });
+  });
+
 });
