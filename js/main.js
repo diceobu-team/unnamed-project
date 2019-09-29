@@ -326,6 +326,41 @@ function clearErrorBox() {
   $("#dt-reg-form-username-exists-error").hide();
 }
 
+// Tool Page Map Load
+function loadTool() {
+  displayConLog("tool", "requesting map information");
+  $.post("/unnamed-project/php/load.php", function(data, status) {
+    displayConLog("load.php", "Server replied: "+data+"\tStatus: "+status);
+    if(data==="error code 14") displayConLog("load.php", "no active map to display");
+    else {
+      var rawPolygons=data.split("|#|");
+      var polygonUniqueID=new Array;
+      var polygonName=new Array;
+      var polygonID=new Array;
+      var polygonPoint=new Array;
+      var polygonCoords=new Array;
+      rawPolygons.forEach(function(value, index, array) {
+        if(index>0) {
+          var rawPolygonsRow=value.split("\n");
+          polygonUniqueID[index-1]=rawPolygonsRow[0];
+          polygonName[index-1]=rawPolygonsRow[1];
+          polygonID[index-1]=rawPolygonsRow[2];
+          polygonPoint[index-1]=rawPolygonsRow[3];
+          polygonCoords[index-1]=rawPolygonsRow[4].replace(/ /g, ",");
+        }
+      });
+      console.log(polygonUniqueID);
+      console.log(polygonName);
+      console.log(polygonID);
+      console.log(polygonPoint);
+      console.log(polygonCoords);
+
+      // D3-EDITS START
+      FNC(polygonCoords,polygonUniqueID);
+      // D3-EDITS END
+    }
+  });
+}
 
 // Control Panel Map
 function FNC(polygonCoords, polygonUniqueID) {
@@ -351,7 +386,7 @@ function FNC(polygonCoords, polygonUniqueID) {
 
   // Make polygons
   polygonCoords.forEach(function(value, index, array) {
-    var polygons = L.polygon(polygonCoords[index],{"uid": Number(polygonUniqueID[index])});//.addTo(map);
+    var polygons = L.polygon(polygonCoords[index],{"uid": Number(polygonUniqueID[index]), color: "gray"});//.addTo(map);
     polyLayers.push(polygons);
   });
 
@@ -365,4 +400,20 @@ function FNC(polygonCoords, polygonUniqueID) {
     var uid = event.layer.options.uid;
     console.log(uid);
   }
+
+  polyLayers.forEach(function(value, index, array) {
+    console.log(polyLayers[index].options.color);
+    if (polyLayers[index].options.uid > 10 && polyLayers[index].options.uid < 20)
+    {
+      polyLayers[index].options.color = "orange";
+    } else if (polyLayers[index].options.uid >= 20) {
+      polyLayers[index].options.color = "red";
+    } else {
+      polyLayers[index].options.color = "green";
+    }
+    console.log(polyLayers[index].options.color);
+  });
+  
+  map.removeLayer(drawnItems);
+  map.addLayer(drawnItems);
 }
