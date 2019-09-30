@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
     $sql="SELECT * FROM $map_name";
     if($result=mysqli_query($link, $sql)) {
       while($row=mysqli_fetch_array($result)){
-        echo "|#|".$row['rowid']."\n".$row['name']."\n".$row['id']."\n".$row['point']."\n".$row['coords']."\n";
+        echo "|#|".$row['rowid']."\n".$row['name']."\n".$row['id']."\n".$row['point']."\n".$row['coords']."\n".$row['details']."\n";
       }
     } else {
         echo "error code 13";
