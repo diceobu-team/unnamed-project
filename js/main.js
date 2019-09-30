@@ -370,9 +370,6 @@ function loadTool() {
   });
 }
 
-var polyLayers = [];
-var map;
-var drawnItems;
 
 // Control Panel Map
 function FNC(polygonCoords, polygonUniqueID) {
@@ -413,6 +410,7 @@ function FNC(polygonCoords, polygonUniqueID) {
   function polyonclick(event) {
     var uid = event.layer.options.uid;
     console.log(uid);
+    selected_polygon_id = uid;
   }
   }
 
