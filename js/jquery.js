@@ -279,6 +279,7 @@ $(document).ready(function() {
       min=Number(absoluteTimeHM[1]);
       displayConLog("simulation time", hour+":"+min);
     }    
+    $("#dt-tool-display-time-actual-time").html(hour+":"+min);
     CityOverview(details_array, hour);
   });
 
