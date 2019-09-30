@@ -362,8 +362,14 @@ function loadTool() {
   });
 }
 
+var polyLayers = [];
+var map;
+var drawnItems;
+
 // Control Panel Map
 function FNC(polygonCoords, polygonUniqueID) {
+
+  console.log("AQAA");
 
   //Make polygonCoords usable (Array of Arrays)
   polygonCoords.forEach(function(value, index, array) {
@@ -376,13 +382,13 @@ function FNC(polygonCoords, polygonUniqueID) {
   });
 
   // Make basemap
-  const map = new L.Map('dt-control-panel-map', { center: new L.LatLng(40.6401, 22.9444), zoom: 15 });
+  map = new L.Map('dt-control-panel-map', { center: new L.LatLng(40.6401, 22.9444), zoom: 15 });
   const osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
   map.addLayer(osm);
 
-  var drawnItems = new L.FeatureGroup().on('click',polyonclick);
+  drawnItems = new L.FeatureGroup().on('click',polyonclick);
   map.addLayer(drawnItems);
-  var polyLayers = [];
+  
 
   // Make polygons
   polygonCoords.forEach(function(value, index, array) {
@@ -400,51 +406,14 @@ function FNC(polygonCoords, polygonUniqueID) {
     var uid = event.layer.options.uid;
     console.log(uid);
   }
-
-  // polyLayers.forEach(function(value, index, array) {
-  //   //console.log(polyLayers[index].options.color);
-  //   if (polyLayers[index].options.uid > 10 && polyLayers[index].options.uid < 20)
-  //   {
-  //     polyLayers[index].options.color = "orange";
-  //   } else if (polyLayers[index].options.uid >= 20) {
-  //     polyLayers[index].options.color = "red";
-  //   } else {
-  //     polyLayers[index].options.color = "green";
-  //   }
-  //   //console.log(polyLayers[index].options.color);
-  // });
-  
- 
-
-  var details = [];
-  details[0] = { "residents": 1000, "total_spots": 5690, "residence_type": 0, "demand": [ 0.5, 0.6, 0.4 ] };
-  details[1] = { "residents": 2000, "total_spots": 5390, "residence_type": 1, "demand": [ 0.5, 0.1, 0.1 ] };
-  details[2] = { "residents": 1200, "total_spots": 5290, "residence_type": 0, "demand": [ 0.5, 0.6, 0.4 ] };
-  details[3] = { "residents": 1030, "total_spots": 519, "residence_type": 2, "demand": [ 0.5, 0.3, 0.2 ] };
-
-
-
-  console.log(details.residents);
-  console.log(details);
-  console.log(JSON.stringify(details));
-  var test = JSON.stringify(details);
-  console.log(JSON.parse(test));
-
-  console.log(details[0]);
-  console.log(details[1]);
-
-
-
-  CityOverview(details, 2, polyLayers);
-  map.removeLayer(drawnItems);
-  map.addLayer(drawnItems);
-
   }
 
 
 
-function CityOverview(details, hour, polyLayers) 
+function CityOverview(details, hour) 
 {
+  console.log(details);
+
   var free_spots = [];
   var taken_ratio = [];
 
@@ -475,6 +444,10 @@ function CityOverview(details, hour, polyLayers)
       polyLayers[index].options.color = "red";
     }
     console.log(polyLayers[index].options.color);
+
+    map.removeLayer(drawnItems);
+    map.addLayer(drawnItems);
+
   });
 }
 
