@@ -209,6 +209,16 @@ $(document).ready(function() {
   
         // D3-EDITS START
         FNC(polygonCoords,polygonUniqueID);
+
+
+        details_array = [];
+        polygonDetails.forEach(function(value, index, array) {
+          details_array.push(JSON.parse(polygonDetails[index]));
+        });
+
+        console.log(details_array);
+
+        CityOverview(details_array, 11);
         // D3-EDITS END
       }
     });
