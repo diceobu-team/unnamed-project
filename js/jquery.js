@@ -2,6 +2,8 @@
 var developerMode=true;
 var devModeOverlaySlide=350;
 var language="Eng";
+var hour;
+var min;
 var elemEng=document.getElementsByClassName("langEng");
 var elemGr=document.getElementsByClassName("langGr");
 var sessionActive;
@@ -13,6 +15,11 @@ var fatalErrorOccured=false;
 
 // On page load
 $(document).ready(function() {
+  // Time
+  var d=new Date();
+  hour=d.getHours();
+  min=d.getMinutes();
+  displayConLog("time", hour+":"+min);
   // Dev Mode Badge
   if(developerMode) $("#dt-dev-mode-badge").show()
   // Tool Page
@@ -236,6 +243,7 @@ $(document).ready(function() {
     });
   })
 
+  // Control Panel Map Delete
   $("#dt-control-panel-delete-button").click(function() {
     displayConLog("control", "setting main map");
     var mapName=$("#dt-control-form-delete-map-name").val();
@@ -246,5 +254,25 @@ $(document).ready(function() {
       else displayConLog("delete.php", "fatal error occured");
     });
   });
-
+  
+  // Control Panel Set Time
+  $("#dt-tool-set-time-button").click(function() {
+    displayConLog("set time", "setting simulation time");
+    var absoluteTime=$("#dt-tool-set-time-input-absolute").val();
+    var relativeTime=$("#dt-tool-set-time-input-relative").val();
+    if(absoluteTime=="") {
+      relativeTime=Number(relativeTime);
+      console.log(Math.floor((min+relativeTime)/60));
+      hour+=Math.floor((min+relativeTime)/60);
+      hour=hour%24;
+      min+=relativeTime;
+      min=min%60;
+      displayConLog("simulation time", hour+":"+min);
+    } else {
+      var absoluteTimeHM=absoluteTime.split(":");
+      hour=Number(absoluteTimeHM[0]);
+      min=Number(absoluteTimeHM[1]);
+      displayConLog("simulation time", hour+":"+min);
+    }
+  });
 });
