@@ -254,23 +254,11 @@ a.dt-top-link:hover, a.dt-top-link:active {
 }
 
 /* Control Panel */
-#dt-control-panel-options-box {
-  
-}
-
 .dt-control-panel-boxes {
   border:0.1em solid rgba(0, 0, 0, 0.5);
   padding:1em;
   width:100%;
   overflow:auto;
-}
-
-#dt-upload-kml-map {
-
-}
-
-#dt-load-kml-map {
-  
 }
 
 #dt-control-panel-map {
