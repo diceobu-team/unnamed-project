@@ -188,6 +188,7 @@ $(document).ready(function() {
         var polygonID=new Array;
         var polygonPoint=new Array;
         var polygonCoords=new Array;
+        var polygonDetails=new Array;
         rawPolygons.forEach(function(value, index, array) {
           if(index>0) {
             var rawPolygonsRow=value.split("\n");
@@ -196,6 +197,7 @@ $(document).ready(function() {
             polygonID[index-1]=rawPolygonsRow[2];
             polygonPoint[index-1]=rawPolygonsRow[3];
             polygonCoords[index-1]=rawPolygonsRow[4].replace(/ /g, ",");
+            polygonDetails[index-1]=rawPolygonsRow[5];
           }
         });
         console.log(polygonUniqueID);
@@ -203,6 +205,7 @@ $(document).ready(function() {
         console.log(polygonID);
         console.log(polygonPoint);
         console.log(polygonCoords);
+        console.log(polygonDetails);
   
         // D3-EDITS START
         FNC(polygonCoords,polygonUniqueID);
