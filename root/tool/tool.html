@@ -189,7 +189,38 @@
   <br/>
   <br/>
 
-  <div class="dt-control-panel-boxes embed-responsive embed-responsive-16by9" id="dt-control-panel-map"></div>
+  
+
+  <div class="container-fluid">
+    <br/>
+    <div class="row">
+      <div class="col-lg-3 col-md-4">
+        <div id="dt-control-panel-options-box">
+          <div class="dt-control-panel-boxes" id="dt-tool-set-time">
+            <h5 lang="en" class="langEng">Set Time</h5>
+            <h5 lang="el" class="langGr">Ορισμός Ώρας</h5>
+            <hr/>
+            <label for="Set-Time-Absolute"><p lang="en" class="langEng">Absolute Time</p><p lang="el" class="langGr">Απόλυτη Ώρα</p></label>
+            <input type="text" class="form-control" id="dt-tool-set-time-input-absolute" placeholder="23:59" name="Set-Time-Absolute">
+            <h4 lang="en" class="langEng">or</h4>
+            <h4 lang="el" class="langGr">ή</h4>
+            <br/>
+            <label for="Set-Time-Relative"><p lang="en" class="langEng">Relative Time</p><p lang="el" class="langGr">Σχετική Ώρα</p></label>
+            <input type="text" class="form-control" id="dt-tool-set-time-input-relative" placeholder="30" name="Set-Time-Relative">
+            <br>
+            <button class="btn btn-outline-primary" id="dt-tool-set-time-button">
+              <p lang="en" class="langEng">Set</p>
+              <p lang="el" class="langGr">Ορισμός</p>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Left (Options Panel) & Right (Map) || LINE -->
+      <div class="col-lg-9 col-md-8">
+        <div class="dt-control-panel-boxes embed-responsive embed-responsive-16by9" id="dt-control-panel-map"></div>
+      </div>
+    </div>
+  </div>
 
   <div class="container">
     <br/>
