@@ -451,3 +451,13 @@ function CityOverview(details, hour)
   });
 }
 
+
+$("#dt-control-panel-edit-polygon-button").click(function() {
+  //clearErrorBox();
+  // var temp_residents=$("#dt-control-form-edit-polygon-residents").val();
+  // var temp_spots=$("#dt-control-form-edit-polygon-spots").val();
+  console.log("A");
+
+  console.log(temp_residents);
+  console.log(temp_spots);
+});
