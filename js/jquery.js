@@ -9,6 +9,10 @@ var elemGr=document.getElementsByClassName("langGr");
 var sessionActive;
 var sessionId;
 var isAdmin;
+var polygonDetails=new Array;
+var details_array = [];
+
+
 if(developerMode) var debugLogs=true;
 else var debugLogs=false;
 var fatalErrorOccured=false;
@@ -195,7 +199,6 @@ $(document).ready(function() {
         var polygonID=new Array;
         var polygonPoint=new Array;
         var polygonCoords=new Array;
-        var polygonDetails=new Array;
         rawPolygons.forEach(function(value, index, array) {
           if(index>0) {
             var rawPolygonsRow=value.split("\n");
@@ -214,18 +217,16 @@ $(document).ready(function() {
         console.log(polygonCoords);
         console.log(polygonDetails);
   
+        console.log(polygonDetails);
+        polygonDetails.forEach(function(value, index, array) {
+        details_array.push(JSON.parse(polygonDetails[index]));
+        });
+        console.log(details_array);
         // D3-EDITS START
         FNC(polygonCoords,polygonUniqueID);
 
 
-        details_array = [];
-        polygonDetails.forEach(function(value, index, array) {
-          details_array.push(JSON.parse(polygonDetails[index]));
-        });
 
-        console.log(details_array);
-
-        CityOverview(details_array, 11);
         // D3-EDITS END
       }
     });
@@ -273,6 +274,17 @@ $(document).ready(function() {
       hour=Number(absoluteTimeHM[0]);
       min=Number(absoluteTimeHM[1]);
       displayConLog("simulation time", hour+":"+min);
-    }
+    }    
+    CityOverview(details_array, hour);
   });
+
+  // Control Panel Pop-up
+  $("#dt-control-panel-edit-polygon-button").click(function() {
+    var temp_residents=$("#dt-control-form-edit-polygon-residents").val();
+    var temp_spots=$("#dt-control-form-edit-polygon-spots").val();
+
+    console.log(temp_residents);
+    console.log(temp_spots);
+  });
+  
 });

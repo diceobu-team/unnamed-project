@@ -347,6 +347,7 @@ function loadTool() {
           polygonID[index-1]=rawPolygonsRow[2];
           polygonPoint[index-1]=rawPolygonsRow[3];
           polygonCoords[index-1]=rawPolygonsRow[4].replace(/ /g, ",");
+          polygonDetails[index-1]=rawPolygonsRow[5];
         }
       });
       console.log(polygonUniqueID);
@@ -354,9 +355,16 @@ function loadTool() {
       console.log(polygonID);
       console.log(polygonPoint);
       console.log(polygonCoords);
+      console.log(polygonDetails);
 
+      console.log(polygonDetails);
+      polygonDetails.forEach(function(value, index, array) {
+      details_array.push(JSON.parse(polygonDetails[index]));
+      });
+      console.log(details_array);
       // D3-EDITS START
       FNC(polygonCoords,polygonUniqueID);
+      CityOverview(details_array, hour);
       // D3-EDITS END
     }
   });
@@ -450,14 +458,3 @@ function CityOverview(details, hour)
 
   });
 }
-
-
-$("#dt-control-panel-edit-polygon-button").click(function() {
-  //clearErrorBox();
-  // var temp_residents=$("#dt-control-form-edit-polygon-residents").val();
-  // var temp_spots=$("#dt-control-form-edit-polygon-spots").val();
-  console.log("A");
-
-  console.log(temp_residents);
-  console.log(temp_spots);
-});
