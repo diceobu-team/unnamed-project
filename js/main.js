@@ -401,19 +401,80 @@ function FNC(polygonCoords, polygonUniqueID) {
     console.log(uid);
   }
 
+  // polyLayers.forEach(function(value, index, array) {
+  //   //console.log(polyLayers[index].options.color);
+  //   if (polyLayers[index].options.uid > 10 && polyLayers[index].options.uid < 20)
+  //   {
+  //     polyLayers[index].options.color = "orange";
+  //   } else if (polyLayers[index].options.uid >= 20) {
+  //     polyLayers[index].options.color = "red";
+  //   } else {
+  //     polyLayers[index].options.color = "green";
+  //   }
+  //   //console.log(polyLayers[index].options.color);
+  // });
+  
+ 
+
+  var details = [];
+  details[0] = { "residents": 1000, "total_spots": 5690, "residence_type": 0, "demand": [ 0.5, 0.6, 0.4 ] };
+  details[1] = { "residents": 2000, "total_spots": 5390, "residence_type": 1, "demand": [ 0.5, 0.1, 0.1 ] };
+  details[2] = { "residents": 1200, "total_spots": 5290, "residence_type": 0, "demand": [ 0.5, 0.6, 0.4 ] };
+  details[3] = { "residents": 1030, "total_spots": 519, "residence_type": 2, "demand": [ 0.5, 0.3, 0.2 ] };
+
+
+
+  console.log(details.residents);
+  console.log(details);
+  console.log(JSON.stringify(details));
+  var test = JSON.stringify(details);
+  console.log(JSON.parse(test));
+
+  console.log(details[0]);
+  console.log(details[1]);
+
+
+
+  CityOverview(details, 2, polyLayers);
+  map.removeLayer(drawnItems);
+  map.addLayer(drawnItems);
+
+  }
+
+
+
+function CityOverview(details, hour, polyLayers) 
+{
+  var free_spots = [];
+  var taken_ratio = [];
+
   polyLayers.forEach(function(value, index, array) {
-    console.log(polyLayers[index].options.color);
-    if (polyLayers[index].options.uid > 10 && polyLayers[index].options.uid < 20)
+    console.log(index);
+
+    console.log(details[index].total_spots);
+    console.log(0.2*details[index].residents);
+    console.log(details[index].demand[hour]);
+
+    free_spots[index] = (details[index].total_spots-0.2*details[index].residents) * (1-details[index].demand[hour]);
+    console.log(free_spots[index]);
+
+    taken_ratio[index] = (details[index].total_spots-free_spots[index])/details[index].total_spots;
+
+    console.log(taken_ratio[index]);
+
+    if (taken_ratio[index] < 0.6)
     {
-      polyLayers[index].options.color = "orange";
-    } else if (polyLayers[index].options.uid >= 20) {
-      polyLayers[index].options.color = "red";
-    } else {
       polyLayers[index].options.color = "green";
+    } 
+    else if (taken_ratio[index] < 0.85) 
+    {
+      polyLayers[index].options.color = "yellow";
+    } 
+    else 
+    {
+      polyLayers[index].options.color = "red";
     }
     console.log(polyLayers[index].options.color);
   });
-  
-  map.removeLayer(drawnItems);
-  map.addLayer(drawnItems);
 }
+
