@@ -297,6 +297,18 @@ a.dt-top-link:hover, a.dt-top-link:active {
   width:100%;
 }
 
+#dt-edit-polygon {
+  display:none;
+  z-index:500;
+  background-color:rgb(223, 223, 223);
+  width:30%;
+  left:35%;
+}
+
+#dt-edit-polygon-close-button {
+  float:right;
+}
+
 #dt-control-panel-edit-polygon-button {
   width:100%;
 }

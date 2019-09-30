@@ -374,8 +374,6 @@ function loadTool() {
 // Control Panel Map
 function FNC(polygonCoords, polygonUniqueID) {
 
-  console.log("AQAA");
-
   //Make polygonCoords usable (Array of Arrays)
   polygonCoords.forEach(function(value, index, array) {
     var a = polygonCoords[index].split(',');
@@ -411,6 +409,7 @@ function FNC(polygonCoords, polygonUniqueID) {
     var uid = event.layer.options.uid;
     console.log(uid);
     selected_polygon_id = uid;
+    $("#dt-edit-polygon").show();
   }
   }
 

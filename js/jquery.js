@@ -15,6 +15,7 @@ var selected_polygon_id;
 var polyLayers = [];
 var map;
 var drawnItems;
+var selected_map_name;
 
 
 if(developerMode) var debugLogs=true;
@@ -193,6 +194,7 @@ $(document).ready(function() {
   $("#dt-control-panel-load-button").click(function() {
     displayConLog("control", "requesting map information");
     var mapName=$("#dt-control-form-load-map-name").val();
+    selected_map_name=mapName;
     $.post("/unnamed-project/php/load.php", {mapName}, function(data, status) {
       displayConLog("load.php", "Server replied: "+data+"\tStatus: "+status);
       if(data==="error code 13") displayConLog("load.php", "requested data could not be fetched");
@@ -228,9 +230,7 @@ $(document).ready(function() {
         console.log(details_array);
         // D3-EDITS START
         FNC(polygonCoords,polygonUniqueID);
-
-
-
+        CityOverview(details_array, hour);
         // D3-EDITS END
       }
     });
@@ -286,30 +286,38 @@ $(document).ready(function() {
   $("#dt-control-panel-edit-polygon-button").click(function() {
     var temp_residents=$("#dt-control-form-edit-polygon-residents").val();
     var temp_spots=$("#dt-control-form-edit-polygon-spots").val();
-
-    if (selected_polygon_id > 0)
-    {
-      polyLayers.forEach(function(value, index, array) 
-      {
-        if (selected_polygon_id === polyLayers[index].options.uid)
-        {
-          if (temp_residents != "")
-          {
-            ###
+    // selected_polygon_id=1;
+    if(selected_polygon_id > 0) {
+      polyLayers.forEach(function(value, index, array) {
+        if(selected_polygon_id===polyLayers[index].options.uid) {
+          if(temp_residents!="") {
+            temp_residents=Number(temp_residents);
+            $.post("/unnamed-project/php/change.php", {selected_map_name, selected_polygon_id, temp_residents}, function(data, status) {
+              displayConLog("change.php", "Server replied: "+data+"\tStatus: "+status);
+              if(data==="error code 20") displayConLog("change.php", "fatal error occured");
+            });
           }
-          if (temp_spots != "")
-          {
-            ###
+          if(temp_spots!="") {
+            temp_spots=Number(temp_spots);
+            $.post("/unnamed-project/php/change.php", {selected_map_name, selected_polygon_id, temp_spots}, function(data, status) {
+              displayConLog("change.php", "Server replied: "+data+"\tStatus: "+status);
+              if(data==="error code 20") displayConLog("change.php", "fatal error occured");
+              
+            });
           }
         }
-      }
+      });
+    } else {
+      displayConLog("control", "Please select a polygon first!");
     }
-    else
-    {
-      console.log("Please select a polygon first!");
-    }
+
     console.log(temp_residents);
     console.log(temp_spots);
+  });
+
+  // Control Panel Edit Polygon Close Button
+  $("#dt-edit-polygon-close-button").click(function() {
+    $("#dt-edit-polygon").hide();
   });
 
 });
