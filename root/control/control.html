@@ -187,7 +187,6 @@
   <!-------------------- /Common Section -------------------->
   
   <!-- Main Content -->
-
   <div class="container-fluid">
     <br/>
     <div class="row">
@@ -251,6 +250,21 @@
       <!-- Left (Options Panel) & Right (Map) || LINE -->
       <div class="col-lg-9 col-md-8">
         <div class="dt-control-panel-boxes embed-responsive embed-responsive-16by9" id="dt-control-panel-map"></div>
+        <div class= "popup-overlap" id="dt-edit-polygon">
+            <h5 lang="en" class="langEng">Edit Polygon</h5>
+            <h5 lang="el" class="langGr">Επεξεργασία Πολυγώνου</h5>
+            <hr/>
+            <label for="Number-of-residents"><p lang="en" class="langEng">Number of residents</p><p lang="el" class="langGr">Πλήθος κατοίκων</p></label>
+            <input type="text" class="form-control" id="dt-control-form-edit-polygon-residents" placeholder="Number of residents" name="Number-of-residents">
+            <br>
+            <label for="Number-of-spots"><p lang="en" class="langEng">Number of parking spots</p><p lang="el" class="langGr">Πλήθος θέσεων</p></label>
+            <input type="text" class="form-control" id="dt-control-form-edit-polygon-spots" placeholder="Number of parking spots" name="Number-of-spots">
+            <br>
+            <button class="btn btn-outline-primary" id="dt-control-panel-edit-polygon-button">
+              <p lang="en" class="langEng">Save</p>
+              <p lang="el" class="langGr">Αποθήκευση</p>
+            </button>
+          </div>
       </div>
     </div>
   </div>

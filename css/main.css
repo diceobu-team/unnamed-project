@@ -291,3 +291,20 @@ a.dt-top-link:hover, a.dt-top-link:active {
 #dt-control-panel-set-button {
   width:100%;
 }
+
+#dt-edit-polygon {
+  border:0.1em solid rgba(0, 0, 0, 0.5);
+  padding:1em;
+  width:50%;
+  overflow:auto;
+}
+
+.popup-overlap {
+  position: relative;
+  top: -75%;
+  left: 25%;
+}
+
+#dt-tool-set-time-button {
+  width:100%;
+}
