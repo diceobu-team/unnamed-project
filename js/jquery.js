@@ -11,6 +11,10 @@ var sessionId;
 var isAdmin;
 var polygonDetails=new Array;
 var details_array = [];
+var selected_polygon_id;
+var polyLayers = [];
+var map;
+var drawnItems;
 
 
 if(developerMode) var debugLogs=true;
@@ -283,8 +287,29 @@ $(document).ready(function() {
     var temp_residents=$("#dt-control-form-edit-polygon-residents").val();
     var temp_spots=$("#dt-control-form-edit-polygon-spots").val();
 
+    if (selected_polygon_id > 0)
+    {
+      polyLayers.forEach(function(value, index, array) 
+      {
+        if (selected_polygon_id === polyLayers[index].options.uid)
+        {
+          if (temp_residents != "")
+          {
+            ###
+          }
+          if (temp_spots != "")
+          {
+            ###
+          }
+        }
+      }
+    }
+    else
+    {
+      console.log("Please select a polygon first!");
+    }
     console.log(temp_residents);
     console.log(temp_spots);
   });
-  
+
 });
