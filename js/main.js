@@ -328,6 +328,7 @@ function clearErrorBox() {
 
 // Tool Page Map Load
 function loadTool() {
+  $("#dt-tool-display-time-actual-time").html(hour+":"+min);
   displayConLog("tool", "requesting map information");
   $.post("/unnamed-project/php/load.php", function(data, status) {
     displayConLog("load.php", "Server replied: "+data+"\tStatus: "+status);
